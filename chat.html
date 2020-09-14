@@ -1,0 +1,145 @@
+<!DOCTYPE html lang="en">
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>chat</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link href="css/normalize.css" rel="stylesheet" type="text/css" />
+    <link href="css/components.css" rel="stylesheet" type="text/css" />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"
+      type="text/javascript"
+    ></script>
+    <script type="text/javascript">
+      WebFont.load({
+        google: {
+          families: [
+            'Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic',
+          ],
+        },
+      });
+    </script>
+  </head>
+  <body>
+    <header class="chat-header">
+      <div class="header__info-container">
+        <img
+          src="images/parola_illustration.svg"
+          alt="Illustration of the Parola robot"
+          class="info-container__picture"
+        />
+        <p class="info-container__text">Parola</p>
+      </div>
+      <a href="index.html" class="anchor w-inline-block"
+        ><img src="images/close.svg" alt="" class="header__close--50-opacity"
+      /></a>
+    </header>
+    <main class="chat">
+      <article class="chat__bubble--bot">
+        <p class="bubble__text">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspen disse
+          varius enim in eros elementum tristique.
+        </p>
+      </article>
+      <article class="chat__bubble--bot">
+        <p class="bubble__text">Duis cursus, mi quis viverra ornare!</p>
+      </article>
+      <article class="chat__bubble--user">
+        <p class="bubble__text">Lorem ipsum dolor?</p>
+      </article>
+      <article class="chat__bubble--user">
+        <p class="bubble__text">
+          Adipiscing elit. Suspen disse varius enim in eros elementum tristique…
+        </p>
+      </article>
+      <article class="chat__bubble--bot">
+        <p class="bubble__text">Mi quis viverra:</p>
+        <img src="images/image-001.jpg" class="bubble__image" />
+      </article>
+
+      <article class="chat__bubble--user">
+        <p class="bubble__text">Et justo duo dolore</p>
+      </article>
+      <article class="chat__bubble--bot">
+        <p class="bubble__text">
+          At vero eos et accusam et justo duo dolores et ea rebum. Stet clita
+          kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+          amet.
+        </p>
+        <div
+          data-animation="slide"
+          data-nav-spacing="5"
+          data-duration="500"
+          data-infinite="1"
+          class="bubble__slider w-slider"
+        >
+          <div class="slider__mask w-slider-mask">
+            <div class="slide__1 w-slide"></div>
+          </div>
+          <div class="slider__arrow--left w-slider-arrow-left">
+            <div class="arrow__icon w-icon-slider-left"></div>
+          </div>
+          <div class="slider__arrow--right w-slider-arrow-right">
+            <div class="arrow__icon w-icon-slider-right"></div>
+          </div>
+          <div class="slider__nav w-slider-nav w-round"></div>
+        </div>
+      </article>
+      <article class="chat__bubble--user">
+        <p class="bubble__text">Et justo duo dolore</p>
+      </article>
+      <article class="chat__bubble--user">
+        <p class="bubble__text">
+          At vero eos et accusam et justo duo dolores et ea rebum. Stet clita
+          kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet
+        </p>
+      </article>
+      <article class="chat__bubble--bot">
+        <p class="bubble__text">Mi quis viverra:</p>
+        <div
+          style="padding-top: 56.17021276595745%;"
+          class="bubble__video w-video w-embed"
+        >
+          <iframe
+            class="embedly-embed"
+            src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FLXb3EKWsInQ%3Ffeature%3Doembed&display_name=YouTube&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DLXb3EKWsInQ&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FLXb3EKWsInQ%2Fhqdefault.jpg&key=c4e54deccf4d4ec997a64902e9a30300&type=text%2Fhtml&schema=youtube"
+            scrolling="no"
+            title="YouTube embed"
+            frameborder="0"
+            allow="autoplay; fullscreen"
+            allowfullscreen="true"
+          ></iframe>
+        </div>
+      </article>
+      <div class="chat__recommendations">
+        <a href="#" class="recommendations__button w-button">🥳</a
+        ><a href="#" class="recommendations__button w-button">💪🏻</a
+        ><a href="#" class="recommendations__button w-button">Lorem</a
+        ><a href="#" class="recommendations__button w-button">👎🏻</a>
+      </div>
+    </main>
+    <div class="write-message w-form">
+      <form
+        id="wf-form-chat-form"
+        name="wf-form-chat-form"
+        data-name="chat-form"
+        class="write-message__form"
+      >
+        <input
+          type="text"
+          class="form__input w-input"
+          maxlength="256"
+          name="name"
+          data-name="Name"
+          placeholder="Chat with me"
+          id="name"
+        /><input type="submit" value="Send" class="form__button w-button" />
+      </form>
+    </div>
+    <script>
+      // Makes sure that the last message is showed in the viewport and not the first
+      window.scrollTo(0, document.body.scrollHeight);
+    </script>
+  </body>
+</html>

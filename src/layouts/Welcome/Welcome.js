@@ -1,5 +1,5 @@
 import React from 'react';
-import './welcome.css';
+import './Welcome.css';
 import parolaIllustration from '../../assets/imgs/parola_illustration.svg';
 
 const welcome = () => {

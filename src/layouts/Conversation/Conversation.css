@@ -121,7 +121,6 @@
 }
 .slide__1 {
   background-image: url('../../assets/imgs/gallery-image-001.jpg');
-  /* background-image: url('../images/gallery-image-003.jpg'); */
   background-position: 50% 50%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -170,6 +169,7 @@
 .bubble__video {
   width: 190px;
   margin-top: 7.5px;
+  height: 120px;
 }
 .chat__recommendations {
   display: -webkit-box;

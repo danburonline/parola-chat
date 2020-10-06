@@ -1,8 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import ChatMessage from '../Chat/ChatMessage/ChatMessage';
 
 const Chat = (props) => {
-  let messages = props.messages.map((el) => {
+  useEffect(() => {
+    // Always scroll to the bottom of the ad
+    window.scrollTo(0, document.body.scrollHeight)
+    })
+
+  let messages = props.chatHistory.messages.map((el) => {
     return (
       <ChatMessage
         key={el.messageId}

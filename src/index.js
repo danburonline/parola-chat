@@ -14,7 +14,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// Always scroll to the bottom of the ad
-window.scrollTo(0, document.body.scrollHeight);
-
 serviceWorker.unregister();

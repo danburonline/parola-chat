@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
-const ChatInput = () => {
+const ChatInput = (props) => {
+  const textInput = useRef();
+
+  const handleEnter = event => {
+    event.preventDefault();
+    event.stopPropagation()
+    props.handleUserInput(textInput)
+  }
+
   return(
-    <div className='write-message w-form'>
+    <form className='write-message w-form' onSubmit={handleEnter}>
         <div
           id='wf-form-chat-form'
           name='wf-form-chat-form'
@@ -11,6 +19,7 @@ const ChatInput = () => {
         >
           <input
             type='text'
+            ref={textInput}
             className='form__input w-input'
             maxLength='256'
             name='name'
@@ -18,9 +27,9 @@ const ChatInput = () => {
             placeholder='Chat with me'
             id='name'
           />
-          <input type='submit' value='Send' className='form__button w-button'/>
+          <input type='submit' value='Send' onClick={() => props.handleUserInput(textInput)} className='form__button w-button'/>
         </div>
-      </div>
+      </form>
   )
 }
 

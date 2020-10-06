@@ -12,7 +12,8 @@ const VIDEO_MESSAGE = 'video';
 const IMAGE_MESSAGE = 'image';
 
 const Conversation = () => {
-  const [messages, setMessages] = useState([
+  const [chatHistory, updateState] = useState({
+    messages: [
       {
         messageId: 1,
         messageSender: PAROLA,
@@ -23,14 +24,6 @@ const Conversation = () => {
       },
       {
         messageId: 2,
-        messageSender: PAROLA,
-        messageText: 'Duis cursus, mi quis viverra ornare!',
-        messageType: NORMAL_MESSAGE,
-        mediaSrc: '',
-        mediaAlt: ''
-      },
-      {
-        messageId: 3,
         messageSender: USER,
         messageText: 'Lorem ipsum dolor?',
         messageType: NORMAL_MESSAGE,
@@ -38,24 +31,15 @@ const Conversation = () => {
         mediaAlt: ''
       },
       {
-        messageId: 4,
-        messageSender: USER,
-        messageText:
-          'Adipiscing elit. Suspen disse varius enim in eros elementum tristique…',
-        messageType: NORMAL_MESSAGE,
-        mediaSrc: '',
-        mediaAlt: ''
-      },
-      {
-        messageId: 5,
+        messageId: 3,
         messageSender: PAROLA,
         messageText: 'Mi quis viverra:',
         messageType: IMAGE_MESSAGE,
-        mediaSrc: 'http://localhost:3000/static/media/image-001.f4b79572.jpg',
+        mediaSrc: 'https://picsum.photos/1920/1080',
         mediaAlt: ''
       },
       {
-        messageId: 6,
+        messageId: 4,
         messageSender: USER,
         messageText: 'Et justo duo dolore',
         messageType: NORMAL_MESSAGE,
@@ -63,7 +47,7 @@ const Conversation = () => {
         mediaAlt: ''
       },
       {
-        messageId: 7,
+        messageId: 5,
         messageSender: USER,
         messageText: 'At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet',
         messageType: NORMAL_MESSAGE,
@@ -71,21 +55,42 @@ const Conversation = () => {
         mediaAlt: ''
       },
       {
-        messageId: 8,
+        messageId: 6,
         messageSender: PAROLA,
         messageText: 'Mi quis viverra:',
         messageType: VIDEO_MESSAGE,
-        mediaSrc: 'https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FLXb3EKWsInQ%3Ffeature%3Doembed&display_name=YouTube&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DLXb3EKWsInQ&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FLXb3EKWsInQ%2Fhqdefault.jpg&key=c4e54deccf4d4ec997a64902e9a30300&type=text%2Fhtml&schema=youtube',
+        mediaSrc: 'https://www.youtube.com/embed/LXb3EKWsInQ',
         mediaAlt: ''
       }
     ]
-  );
+  });
+
+  const handleUserInput = (textInput) => {
+
+    if (textInput.current.value !== '') {
+
+      let newMessage = {
+        messageId: chatHistory.messages.length + 1,
+        messageSender: USER,
+        messageText: textInput.current.value,
+        messageType: NORMAL_MESSAGE,
+        mediaSrc: '',
+        mediaAlt: ''
+      }
+
+      updateState({
+        messages: [...chatHistory.messages, newMessage]
+      })
+    };
+
+    textInput.current.value = ""
+  };
 
   return (
     <Fragment>
       <ChatHeader />
-      <Chat messages={messages}/>
-      <ChatInput />
+      <Chat chatHistory={chatHistory} />
+      <ChatInput handleUserInput={handleUserInput} />
     </Fragment>
   );
 };

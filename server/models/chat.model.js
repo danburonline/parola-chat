@@ -26,7 +26,7 @@ const chatSchema = new Schema({
     unique: true,
     required: true,
   },
-  conversations: [messageSchema]
+  conversations: [messageSchema],
 });
 
 const Chat = mongoose.model('Chat', chatSchema);

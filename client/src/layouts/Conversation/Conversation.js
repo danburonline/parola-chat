@@ -8,7 +8,8 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import axios from 'axios';
 
 const Conversation = () => {
-  let uuid = 123; // TODO Create an UUID via fingerprinting
+  const UUID = 123; // TODO Create an UUID via fingerprinting
+  const API_URL = 'http://localhost:5000'; // TODO Replace with final deployed API
 
   const [loading, updateLoading] = useState(true);
   const [chatHistory, updateChatHistory] = useState([]);
@@ -16,18 +17,38 @@ const Conversation = () => {
   useEffect(() => {
     axios({
       method: 'post',
-      url: 'http://localhost:5000/chat', // TODO: Replace with final deployed API
+      url: API_URL + '/chat',
       data: {
-        uuid: uuid,
+        uuid: UUID,
       },
     }).then((response) => {
-      updateChatHistory(...chatHistory, response.data.conversations);
+      updateChatHistory((c) => response.data.conversations);
       updateLoading(false);
     });
-  }, []);
+  });
 
   const handleUserInput = (textInput) => {
-    // TODO Request to the API
+    const newMessage = {
+      messageText: textInput.current.value,
+      author: 'USER',
+      messageType: 'TXT',
+      mediaSrc: '',
+      mediaAlt: '',
+    };
+
+    axios({
+      _id: Math.random(),
+      method: 'post',
+      url: API_URL + '/chat/add',
+      data: {
+        uuid: UUID,
+        conversations: newMessage,
+      },
+    }).then((result) => {
+      const newChatHistory = [...chatHistory, newMessage];
+      updateChatHistory(newChatHistory);
+    });
+
     textInput.current.value = '';
   };
 

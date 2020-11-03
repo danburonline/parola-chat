@@ -6,7 +6,6 @@ const ChatInput = (props) => {
   const handleEnter = event => {
     event.preventDefault();
     event.stopPropagation()
-    props.handleUserInput(textInput)
   }
 
   return(

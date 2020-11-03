@@ -23,7 +23,6 @@ connection.once('open', () => {
 });
 
 // API routes
-
 const conversationsRouter = require('./routes/chat');
 app.use('/chat', conversationsRouter);
 

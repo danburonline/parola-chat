@@ -10,7 +10,7 @@ router.route('/').post((req, res) => {
     .catch((err) => res.status(400).json(`Error: ${err}`));
 });
 
-router.route('/add').post((req, res) => {
+router.route('/new').post((req, res) => {
   const uuid = req.body.uuid;
   const conversations = req.body.conversations;
 
@@ -20,6 +20,21 @@ router.route('/add').post((req, res) => {
     date: Date.now(),
   })
     .save()
+    .then((chat) => {
+      res.json(chat);
+    })
+    .catch((err) => res.status(400).json(`Error: ${err}`));
+});
+
+router.route('/add').post((req, res) => {
+  const uuid = req.body.uuid;
+  const conversations = req.body.conversations;
+
+  Chat.findOneAndUpdate(
+    { uuid: uuid },
+    { $push: { conversations: conversations } },
+    { new: true }
+  )
     .then((chat) => {
       res.json(chat);
     })

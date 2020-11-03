@@ -7,15 +7,15 @@ const Chat = (props) => {
     window.scrollTo(0, document.body.scrollHeight)
     })
 
-  let messages = props.chatHistory.messages.map((el) => {
+  let messages = props.chatHistory.map((el) => {
     return (
       <ChatMessage
-        key={el.messageId}
-        messageSender={el.messageSender}
+        key={el._id}
+        messageSender={el.author}
         chatText={el.messageText}
         messageType={el.messageType}
         mediaSrc={el.mediaSrc}
-        mediaAlt={el.mediaAlt}
+        mediaAlt={el.mediaSrc}
       />
     );
   });

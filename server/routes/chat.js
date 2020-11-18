@@ -4,10 +4,13 @@ const router = require('express').Router();
 router.route('/').post((req, res) => {
   const uuid = req.body.uuid;
 
-  Chat.find({ uuid: uuid })
-    .select('conversations')
-    .then((conversations) => res.json(conversations[0]))
-    .catch((err) => res.status(400).json(`Error: ${err}`));
+  Chat.find({ uuid: uuid }, function (err, result) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(result);
+    }
+  });
 });
 
 router.route('/new').post((req, res) => {

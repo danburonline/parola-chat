@@ -16,13 +16,11 @@ import FingerprintJS from '@fingerprintjs/fingerprintjs';
   await ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App uuid={visitorId}/>
+        <App uuid={visitorId} />
       </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
   );
 
-  console.log(visitorId)
   serviceWorker.unregister();
 })();
-

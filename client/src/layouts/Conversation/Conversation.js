@@ -15,51 +15,47 @@ const Conversation = (props) => {
   const [chatHistory, updateChatHistory] = useState([]);
 
   useEffect(() => {
-    try {
-      axios({
-        method: 'post',
-        url: API_URL + '/chat',
-        data: {
-          uuid: UUID,
-        },
-      }).then((response) => {
-        updateChatHistory((c) => response.data.conversations);
-        updateLoading(false);
-      }).catch((error) => {
-        if (error.response) {
-          console.log(error.response.status);
-        }
-      });
-    } finally {
-      const standardMessages = [
-        {
-          messageText: 'Hello',
-          author: 'PAROLA',
-          messageType: 'TXT',
-          mediaSrc: '',
-          mediaAlt: ''
-        },
-        {
-          messageText: 'How can I help?',
-          author: 'PAROLA',
-          messageType: 'TXT',
-          mediaSrc: '',
-          mediaAlt: ''
-        },
-      ];
+    axios({
+      method: 'post',
+      url: API_URL + '/chat',
+      data: {
+        uuid: UUID,
+      },
+    }).then((response) => {
+      if (response.data.length <= 0) {
+        const standardMessages = [
+          {
+            messageText: 'Hello',
+            author: 'PAROLA',
+            messageType: 'TXT',
+            mediaSrc: '',
+            mediaAlt: '',
+          },
+          {
+            messageText: 'How can I help?',
+            author: 'PAROLA',
+            messageType: 'TXT',
+            mediaSrc: '',
+            mediaAlt: '',
+          },
+        ];
 
-      axios({
-        method: 'post',
-        url: API_URL + '/chat/new',
-        data: {
-          uuid: UUID,
-          conversations: standardMessages,
-        },
-      }).then((response) => {
-        updateChatHistory((c) => response.data.conversations);
+        axios({
+          method: 'post',
+          url: API_URL + '/chat/new',
+          data: {
+            uuid: UUID,
+            conversations: standardMessages,
+          },
+        }).then((response) => {
+          updateChatHistory((c) => response.data.conversations);
+          updateLoading(false);
+        });
+      } else {
+        updateChatHistory(response.data[0].conversations);
         updateLoading(false);
-      });
-    }
+      }
+    });
   }, [UUID]);
 
   const handleUserInput = (textInput) => {
@@ -68,7 +64,7 @@ const Conversation = (props) => {
       author: 'USER',
       messageType: 'TXT',
       mediaSrc: '',
-      mediaAlt: ''
+      mediaAlt: '',
     };
 
     axios({

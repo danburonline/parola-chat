@@ -7,25 +7,60 @@ import Loader from 'react-loader-spinner';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import axios from 'axios';
 
-const Conversation = () => {
-  const UUID = 123; // TODO Create an UUID via fingerprinting
+const Conversation = (props) => {
+  const UUID = props.uuid;
   const API_URL = 'http://localhost:5000'; // TODO Replace with final deployed API
 
   const [loading, updateLoading] = useState(true);
   const [chatHistory, updateChatHistory] = useState([]);
 
   useEffect(() => {
-    axios({
-      method: 'post',
-      url: API_URL + '/chat',
-      data: {
-        uuid: UUID,
-      },
-    }).then((response) => {
-      updateChatHistory((c) => response.data.conversations);
-      updateLoading(false);
-    });
-  });
+    try {
+      axios({
+        method: 'post',
+        url: API_URL + '/chat',
+        data: {
+          uuid: UUID,
+        },
+      }).then((response) => {
+        updateChatHistory((c) => response.data.conversations);
+        updateLoading(false);
+      }).catch((error) => {
+        if (error.response) {
+          console.log(error.response.status);
+        }
+      });
+    } finally {
+      const standardMessages = [
+        {
+          messageText: 'Hello',
+          author: 'PAROLA',
+          messageType: 'TXT',
+          mediaSrc: '',
+          mediaAlt: ''
+        },
+        {
+          messageText: 'How can I help?',
+          author: 'PAROLA',
+          messageType: 'TXT',
+          mediaSrc: '',
+          mediaAlt: ''
+        },
+      ];
+
+      axios({
+        method: 'post',
+        url: API_URL + '/chat/new',
+        data: {
+          uuid: UUID,
+          conversations: standardMessages,
+        },
+      }).then((response) => {
+        updateChatHistory((c) => response.data.conversations);
+        updateLoading(false);
+      });
+    }
+  }, [UUID]);
 
   const handleUserInput = (textInput) => {
     const newMessage = {
@@ -33,7 +68,7 @@ const Conversation = () => {
       author: 'USER',
       messageType: 'TXT',
       mediaSrc: '',
-      mediaAlt: '',
+      mediaAlt: ''
     };
 
     axios({

@@ -9,7 +9,7 @@ import axios from 'axios';
 
 const Conversation = (props) => {
   const UUID = props.uuid;
-  const API_URL = 'http://localhost:5000'; // TODO Replace with final deployed API
+  const API_URL = 'http://localhost:5000';
 
   const [loading, updateLoading] = useState(true);
   const [chatHistory, updateChatHistory] = useState([]);
@@ -29,14 +29,14 @@ const Conversation = (props) => {
             author: 'PAROLA',
             messageType: 'TXT',
             mediaSrc: '',
-            mediaAlt: '',
+            mediaAlt: ''
           },
           {
             messageText: 'How can I help?',
             author: 'PAROLA',
             messageType: 'TXT',
             mediaSrc: '',
-            mediaAlt: '',
+            mediaAlt: ''
           },
         ];
 
@@ -48,11 +48,11 @@ const Conversation = (props) => {
             conversations: standardMessages,
           },
         }).then((response) => {
-          updateChatHistory((c) => response.data.conversations);
+          updateChatHistory((c) => response.data);
           updateLoading(false);
         });
       } else {
-        updateChatHistory(response.data[0].conversations);
+        updateChatHistory(response.data);
         updateLoading(false);
       }
     });
@@ -73,7 +73,7 @@ const Conversation = (props) => {
       url: API_URL + '/chat/add',
       data: {
         uuid: UUID,
-        conversations: newMessage,
+        conversations: [newMessage],
       },
     }).then((result) => {
       const newChatHistory = [...chatHistory, newMessage];

@@ -4,12 +4,16 @@ const mongooseUniqueValidator = require('mongoose-unique-validator');
 
 const messageSchema = new Schema({
   messageText: {
-    type: String,
+    encryptedData: {
+      type: String,
+    },
+    iv: {
+      type: String,
+    },
   },
-  messageTime: Date,
+  messageTime: Date, // TODO Make this work
   author: {
-    type: String,
-    required: true,
+    type: String
   },
   messageType: {
     type: String,
@@ -18,6 +22,9 @@ const messageSchema = new Schema({
   mediaSrc: {
     type: String,
   },
+  mediaAlt: {
+    type: String,
+  }
 });
 
 const chatSchema = new Schema({

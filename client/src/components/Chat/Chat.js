@@ -4,7 +4,7 @@ import ChatMessage from '../Chat/ChatMessage/ChatMessage';
 const Chat = (props) => {
   useEffect(() => {
     // Always scroll to the bottom of the ad
-    window.scrollTo(0, document.body.scrollHeight); // TODO Find a more elegant solution
+    window.scrollTo(0, document.body.scrollHeight);
   });
 
   let messages = props.chatHistory.map((el) => {

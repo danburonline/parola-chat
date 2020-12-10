@@ -59,27 +59,31 @@ const Conversation = (props) => {
   }, [UUID]);
 
   const handleUserInput = (textInput) => {
-    const newMessage = {
-      messageText: textInput.current.value,
-      author: 'USER',
-      messageType: 'TXT',
-      mediaSrc: '',
-      mediaAlt: '',
-    };
+    // Prevent sending empty messages
+    let text = textInput.current.value.replace(/\s/g,'')
 
-    axios({
-      _id: Math.random(),
-      method: 'post',
-      url: API_URL + '/chat/add',
-      data: {
-        uuid: UUID,
-        conversations: [newMessage],
-      },
-    }).then((result) => {
-      const newChatHistory = [...chatHistory, newMessage];
-      updateChatHistory(newChatHistory);
-    });
+    if (text.length > 0) {
+      const newMessage = {
+        messageText: textInput.current.value,
+        author: 'USER',
+        messageType: 'TXT',
+        mediaSrc: '',
+        mediaAlt: '',
+      };
 
+      axios({
+        _id: Math.random(),
+        method: 'post',
+        url: API_URL + '/chat/add',
+        data: {
+          uuid: UUID,
+          conversations: [newMessage],
+        },
+      }).then((result) => {
+        const newChatHistory = [...chatHistory, newMessage];
+        updateChatHistory(newChatHistory);
+      });
+    }
     textInput.current.value = '';
   };
 

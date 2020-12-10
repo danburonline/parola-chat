@@ -5,8 +5,8 @@ const algorithm = 'aes-256-cbc';
 let iv = Buffer.from('abc3456789034565'); // TODO Solve this problem, so that it's initially random
 
 const encrypt = (text, plainUUID) => {
-  // const iv = crypto.randomBytes(16);
-  let key = plainUUID;
+
+  let key = crypto.createHash('md5').update(plainUUID).digest('hex');;
   // Creating Cipheriv with its parameter
   let cipher = crypto.createCipheriv(algorithm, key, iv);
 
@@ -21,7 +21,7 @@ const encrypt = (text, plainUUID) => {
 };
 
 const decrypt = (text, plainUUID) => {
-  let key = plainUUID;
+  let key = crypto.createHash('md5').update(plainUUID).digest('hex');;
   let iv = Buffer.from(text.iv, 'hex');
   let encryptedText = Buffer.from(text.encryptedData, 'hex');
 

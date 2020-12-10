@@ -4,11 +4,11 @@ import './index.css';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
-import FingerprintJS from '@fingerprintjs/fingerprintjs';
+import FingerprintJS from '@fingerprintjs/fingerprintjs-pro'
 
 (async () => {
-  // Create fingerprinting hash
-  const fp = await FingerprintJS.load();
+  // ! Create a new FingerprintJS Pro token and load it into an env variable in the final app
+  const fp = await FingerprintJS.load({ token: '5bWcx4glQuPmrxdBrbh4', region: 'eu' })
   const result = await fp.get();
   const visitorId = result.visitorId;
 

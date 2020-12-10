@@ -6,7 +6,6 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
 
-// TODO Get FingerprintJS Pro for the final version of Parola
 (async () => {
   // Create fingerprinting hash
   const fp = await FingerprintJS.load();

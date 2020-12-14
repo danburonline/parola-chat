@@ -10,13 +10,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.0.0",
+    "@google-cloud/dialogflow-cx": "^2.1.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.10.9",
     "mongoose-unique-validator": "^2.0.3",
-    "simple-crypto-js": "^3.0.0"
+    "simple-crypto-js": "^3.0.0",
+    "uuid": "^8.3.2"
   }
 }

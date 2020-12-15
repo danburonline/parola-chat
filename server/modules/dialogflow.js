@@ -12,13 +12,12 @@ const gcpCredentials = {
   private_key: process.env.GCP_CLIENTKEY,
 };
 
-const query = 'Wie geht es dir?'; // TODO Embed into REST API routes
 const client = new SessionsClient({
   projectId: projectId,
   credentials: gcpCredentials,
 });
 
-async function detectIntentText() {
+async function detectIntentText(query) {
   const sessionId = uuid.v4();
   const sessionPath = client.projectLocationAgentSessionPath(
     projectId,
@@ -26,7 +25,7 @@ async function detectIntentText() {
     agentId,
     sessionId
   );
-  console.info(sessionPath);
+  // console.info(sessionPath);
 
   const request = {
     session: sessionPath,
@@ -37,22 +36,24 @@ async function detectIntentText() {
       languageCode,
     },
   };
+
   const [response] = await client.detectIntent(request);
-  console.log(`User Query: ${query}`);
+  // console.log(`User Query: ${query}`);
   for (const message of response.queryResult.responseMessages) {
     if (message.text) {
-      console.log(`Agent Response: ${message.text.text}`);
+      // console.log(`Agent Response: ${message.text.text}`);
+      return message.text.text;
     }
   }
-  if (response.queryResult.match.intent) {
-    console.log(
-      `Matched Intent: ${response.queryResult.match.intent.displayName}`
-    );
-  }
-  console.log(`Current Page: ${response.queryResult.currentPage.displayName}`);
+  // if (response.queryResult.match.intent) {
+  //   console.log(
+  //     `Matched Intent: ${response.queryResult.match.intent.displayName}`
+  //   );
+  // }
+  // console.log(`Current Page: ${response.queryResult.currentPage.displayName}`);
 }
 
-detectIntentText();
+module.exports = detectIntentText;
 // [END dialogflow_cx_detect_intent_text]
 
 // main(...process.argv.slice(2));

@@ -1,6 +1,7 @@
 const Chat = require('../models/chat.model');
 const router = require('express').Router();
 const encryption = require('../modules/encryption');
+const dialogflow = require('../modules/dialogflow');
 
 router.route('/').post((req, res) => {
   const uuid = req.body.uuid;
@@ -88,12 +89,25 @@ router.route('/new').post((req, res) => {
     .catch((err) => res.send([]));
 });
 
-router.route('/add').post((req, res) => {
+router.route('/add').post(async (req, res) => {
   const uuid = req.body.uuid;
   const encryptedUuid = encryption.encrypt(uuid, uuid);
-  // TODO Add DialogFlow calls in here and return it's replies as a response
+
   const conversations = req.body.conversations;
   let encryptedConversations = [];
+
+  // TODO Add DialogFlow calls in here and return it's replies as a response
+  let parolaReply = await dialogflow(conversations[0].messageText);
+
+  let parolaMessage = {
+    messageText: parolaReply[0],
+    author: 'PAROLA',
+    messageType: 'TXT',
+    mediaSrc: '',
+    mediaAlt: '',
+  };
+
+  conversations.push(parolaMessage);
 
   conversations.forEach((conversation) => {
     let encryptionResult = encryption.encrypt(conversation.messageText, uuid);

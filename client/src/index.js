@@ -14,6 +14,7 @@ import FingerprintJS from '@fingerprintjs/fingerprintjs-pro';
   });
   const result = await fp.get();
   const visitorId = result.visitorId;
+  // console.log(visitorId)
 
   await ReactDOM.render(
     <React.StrictMode>

@@ -25,18 +25,18 @@ const Conversation = (props) => {
       if (response.data.length <= 0) {
         const standardMessages = [
           {
-            messageText: 'Hello',
+            messageText: 'Hallo 😁',
             author: 'PAROLA',
             messageType: 'TXT',
             mediaSrc: '',
-            mediaAlt: ''
+            mediaAlt: '',
           },
           {
-            messageText: 'How can I help?',
+            messageText: 'Was kann ich für dich tun?',
             author: 'PAROLA',
             messageType: 'TXT',
             mediaSrc: '',
-            mediaAlt: ''
+            mediaAlt: '',
           },
         ];
 
@@ -60,7 +60,7 @@ const Conversation = (props) => {
 
   const handleUserInput = (textInput) => {
     // Prevent sending empty messages
-    let text = textInput.current.value.replace(/\s/g,'')
+    let text = textInput.current.value.replace(/\s/g, '');
 
     if (text.length > 0) {
       const newMessage = {
@@ -80,8 +80,7 @@ const Conversation = (props) => {
           conversations: [newMessage],
         },
       }).then((result) => {
-        const newChatHistory = [...chatHistory, newMessage];
-        updateChatHistory(newChatHistory);
+        updateChatHistory(result.data);
       });
     }
     textInput.current.value = '';

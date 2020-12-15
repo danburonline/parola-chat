@@ -4,7 +4,6 @@
 
 ### react ###
 .DS_*
-gcp-keys.json
 .env
 *.log
 logs

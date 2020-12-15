@@ -1,5 +1,5 @@
 require('dotenv').config();
-const uuid = require("uuid")
+const uuid = require('uuid');
 const { SessionsClient } = require('@google-cloud/dialogflow-cx');
 
 const projectId = process.env.DF_PROJECTID;
@@ -7,8 +7,16 @@ const agentId = process.env.DF_AGENTID;
 const languageCode = process.env.DF_LANGCODE;
 const location = process.env.DF_LOCATION;
 
+const gcpCredentials = {
+  client_email: process.env.GCP_CLIENTEMAIL,
+  private_key: process.env.GCP_CLIENTKEY,
+};
+
 const query = 'Wie geht es dir?'; // TODO Embed into REST API routes
-const client = new SessionsClient();
+const client = new SessionsClient({
+  projectId: projectId,
+  credentials: gcpCredentials,
+});
 
 async function detectIntentText() {
   const sessionId = uuid.v4();

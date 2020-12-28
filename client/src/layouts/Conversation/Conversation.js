@@ -25,14 +25,14 @@ const Conversation = (props) => {
       if (response.data.length <= 0) {
         const standardMessages = [
           {
-            messageText: 'Hallo 😁',
+            messageText: 'Grüezi 😁',
             author: 'PAROLA',
             messageType: 'TXT',
             mediaSrc: '',
             mediaAlt: '',
           },
           {
-            messageText: 'Was kann ich für dich tun?',
+            messageText: 'Was cha ich für dich mache?',
             author: 'PAROLA',
             messageType: 'TXT',
             mediaSrc: '',

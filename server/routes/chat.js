@@ -2,6 +2,8 @@ const Chat = require('../models/chat.model');
 const router = require('express').Router();
 const encryption = require('../modules/encryption');
 const dialogflow = require('../modules/dialogflow');
+const uuid = require('uuid');
+const sessionId = uuid.v4();
 
 router.route('/').post((req, res) => {
   const uuid = req.body.uuid;
@@ -96,18 +98,33 @@ router.route('/add').post(async (req, res) => {
   const conversations = req.body.conversations;
   let encryptedConversations = [];
 
-  // TODO Add DialogFlow calls in here and return it's replies as a response
-  let parolaReply = await dialogflow(conversations[0].messageText);
+  let parolaReplies = await dialogflow(conversations[0].messageText, sessionId);
 
-  let parolaMessage = {
-    messageText: parolaReply[0],
-    author: 'PAROLA',
-    messageType: 'TXT',
-    mediaSrc: '',
-    mediaAlt: '',
-  };
+  let parolaMessages = parolaReplies.map((singleMessage) => {
+    return {
+      messageText: singleMessage,
+      author: 'PAROLA',
+      messageType: 'TXT',
+      mediaSrc: '',
+      mediaAlt: '',
+    };
+  });
 
-  conversations.push(parolaMessage);
+  // TODO Fulfillment replies/promises would be communicated here
+  // ! They would push the reply message to the conversations array
+  // Example
+  // let testFulfillmentReply = {
+  //   messageText: "This is a test reply",
+  //   author: 'PAROLA',
+  //   messageType: 'VIDEO',
+  //   mediaSrc: 'https://www.youtube.com/embed/Kn0EA1OXN24',
+  //   mediaAlt: ''
+  // };
+  // conversations.push(testFulfillmentReply);
+
+  parolaMessages.forEach((parolaMessage) => {
+    conversations.push(parolaMessage);
+  });
 
   conversations.forEach((conversation) => {
     let encryptionResult = encryption.encrypt(conversation.messageText, uuid);

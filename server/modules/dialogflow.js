@@ -1,5 +1,4 @@
 require('dotenv').config();
-const uuid = require('uuid');
 const { SessionsClient } = require('@google-cloud/dialogflow-cx');
 
 const projectId = process.env.DF_PROJECTID;
@@ -17,15 +16,13 @@ const client = new SessionsClient({
   credentials: gcpCredentials,
 });
 
-async function detectIntentText(query) {
-  const sessionId = uuid.v4();
+async function detectIntentText(query, sessionId) {
   const sessionPath = client.projectLocationAgentSessionPath(
     projectId,
     location,
     agentId,
     sessionId
   );
-  // console.info(sessionPath);
 
   const request = {
     session: sessionPath,
@@ -38,13 +35,24 @@ async function detectIntentText(query) {
   };
 
   const [response] = await client.detectIntent(request);
+  // Filter out the empty array objects in the DialogFlow response
+  let dialogFlowResponses = response.queryResult.responseMessages.filter(
+    (singleMessage) => singleMessage.text
+  );
+  let mappedDialogFlowResponses = dialogFlowResponses.map(
+    (singleMessage) => singleMessage.text
+  );
+  let finalFinalDialogFlowResponses = mappedDialogFlowResponses.map(
+    (singleMessage) => singleMessage.text
+  );
+  return finalFinalDialogFlowResponses.flat();
   // console.log(`User Query: ${query}`);
-  for (const message of response.queryResult.responseMessages) {
-    if (message.text) {
-      // console.log(`Agent Response: ${message.text.text}`);
-      return message.text.text;
-    }
-  }
+  // for (const message of response.queryResult.responseMessages) {
+  //   if (message.text) {
+  //     // console.log(`Agent Response: ${message.text.text}`);
+  //     return message.text.text;
+  //   }
+  // }
   // if (response.queryResult.match.intent) {
   //   console.log(
   //     `Matched Intent: ${response.queryResult.match.intent.displayName}`

@@ -1,6 +1,6 @@
 # Parola Chat
 
-![Parola Illustration](https://lh3.googleusercontent.com/pw/ACtC-3e7UCB6LnvBw2JuqVq4aXWsu5TioWkVVJ5hyIrNRWYjwHjDxkMYQQ4-6uhgC_SpXi7Z00fLQLsIhDLSJMIVZr-nUVLEOCCAOJIDKJiPP9i5ks2HUMoc0FzfvhqGSC10X1wcwBNkbmWb72tHn8OG52xK_Q=w2448-h1302-no)
+![Parola Illustration](https://lh3.googleusercontent.com/pw/ACtC-3cROlzJEjqA1XdBaU2pY5BnqpRoTgQ_qc8EUlJRit5RnWOwxqBQMnJKGOuttq9g60BlP1seCYrTcJ98heJCLU0iTCBAv-mnFezWCKeuALIyQQuKtEIADImPegUAi2ul1S8Sb1HendZM2q1dYPL6B-wGzA=w2448-h1302-no)
 
 **Parola Chat is a full-stack advertisement framework** to develop encrypted cross-website conversational experiences with Swiss German natural language understanding/processing.
 

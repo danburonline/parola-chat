@@ -151,13 +151,33 @@
 }
 
 .message {
-  position: static;
+  position: relative;
   display: inline-block;
   max-width: 90%;
   margin-bottom: 7px;
   padding: 10px 15px 5px;
   border-radius: 4px;
   background-color: #2962ff;
+}
+
+.message:before {
+    content: url('../images/bubble-corner.svg');
+    position: absolute;
+    top: calc(100% - 12px);
+    fill: blue;
+    left: 0;
+    height: 20px;
+    width: 20px;
+}
+
+.message.user:before {
+  content: url('../images/bubble-corner-user.svg');
+  position: absolute;
+  top: calc(100% - 12px);
+  right: 0;
+  left: auto;
+  height: 20px;
+  width: 20px;
 }
 
 .message:first-message {
@@ -196,7 +216,7 @@
 
 .message.loading {
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   padding-right: 20px;
   padding-bottom: 15px;
   padding-left: 20px;

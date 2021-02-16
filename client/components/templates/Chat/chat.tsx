@@ -1,34 +1,30 @@
 import styles from "./chat.module.scss"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import ChatBody from "../../organisms/ChatBody/chatBody"
 import ChatHeader from "../../organisms/ChatHeader/chatHeader"
 
-export default function Chat() {
-
-  const [chatState, setChatState] = useState({
-    needsOnboarding: true,
-    chatAlreadyExists: false
-  })
+export default function Chat(props) {
+  const [chatState, setChatState] = useState(false)
+  const [firstTime, setFirstTime] = useState(true)
+  const [needsOnboarding, setOnboarding] = useState(true)
 
   const chatAlreadyExistsHandler = () => {
-    setChatState({
-      ...chatState,
-      chatAlreadyExists: true
-    })
+    setChatState(true)
   }
 
   const removeOnboardingHandler = () => {
-    setChatState({
-      ...chatState,
-      needsOnboarding: false
-    })
+    setOnboarding(false)
+  }
+
+  const setFirstTimeHandler = () => {
+    setFirstTime(false)
   }
 
   return (
     <div className={styles.chat}>
-      <ChatHeader isActive={chatState.chatAlreadyExists} />
-      <ChatBody isActive={chatState.chatAlreadyExists} onboarding={chatState.needsOnboarding} removeOnboardingHandler={removeOnboardingHandler} setChatState={chatAlreadyExistsHandler} />
+      <ChatHeader isActive={chatState} />
+      <ChatBody visitorId={props.visitorId} isActive={chatState} onboarding={needsOnboarding} removeOnboardingHandler={removeOnboardingHandler} setChatState={chatAlreadyExistsHandler} apiUrl={props.apiUrl} firstTime={firstTime} setFirstTime={setFirstTimeHandler} />
     </div>
   )
 }

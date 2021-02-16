@@ -15,7 +15,7 @@ export default function ChatMessage(props) {
   // TODO Conditionally display the other message types as well
 
   return (
-    <div ref={messagesEndRef} className={props.messageAuthor === "parola" ? `${styles.message}` : `${styles.message} ${styles.user}`}>
+    <div ref={messagesEndRef} className={props.messageAuthor === "PAROLA" ? `${styles.message}` : `${styles.message} ${styles.user}`}>
       <p className={styles.messageText}>{props.messageText}</p>
     </div>
   )

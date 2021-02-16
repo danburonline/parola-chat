@@ -1,10 +1,41 @@
+import { useEffect, useState } from "react"
 import Head from 'next/head'
 import styles from "../styles/Home.module.scss";
+import FingerprintJS from '@fingerprintjs/fingerprintjs-pro';
 
 import Chat from "../components/templates/Chat/chat"
 import HeroInfo from "../components/organisms/HeroInfo/heroInfo"
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"; // Add a loading spinner when the messages are being fetched from the server
+import Spinner from "react-loader-spinner";
 
-export default function Home() {
+export async function getStaticProps() {
+  return {
+    props: {
+      API_URL: process.env.API_URL,
+      FS_TOKEN: process.env.FS_TOKEN,
+      REGION: process.env.REGION
+    }
+  }
+}
+
+export default function Home(props) {
+  const [visitorId, setVisitorId] = useState("")
+
+  useEffect(() => {
+    const fetchVisitorId = async () => {
+      const fp = await FingerprintJS.load({
+        token: props.FS_TOKEN,
+        region: props.REGION,
+      });
+      const result = await fp.get();
+      const resultVisitorId = result.visitorId;
+      setVisitorId(resultVisitorId)
+      console.log(visitorId)
+    }
+
+    fetchVisitorId()
+  }, [visitorId])
+
   return <>
     <Head>
       <meta charSet="utf-8" />
@@ -19,7 +50,12 @@ export default function Home() {
     </Head>
 
     <main className={styles.main}>
-      <Chat />
+      {visitorId ? <Chat visitorId={visitorId} apiUrl={props.API_URL} /> : <Spinner
+        type="ThreeDots"
+        color="white"
+        height={75}
+        width={75}
+        timeout={3000} />}
       <HeroInfo />
     </main>
   </>

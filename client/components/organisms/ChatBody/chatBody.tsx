@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react"
 import styles from "./chatBody.module.scss"
+import axios from 'axios';
 
 import ChatInput from "../../molecules/ChatInput/chatInput"
 import ChatMessage from "../../molecules/ChatMessage/chatMessage"
@@ -9,46 +10,75 @@ import QuickReplies from "../QuickReplies/quickReplies"
 import OnboardingInfo from "../OnboardingInfo/onboardingInfo"
 
 export default function ChatBody(props) {
+
   const [messages, setMessages] = useState([
     {
-      id: 1,
-      author: "parola",
-      text: "Aber ich redde sehr gern drüber 😎🇨🇭",
-      type: "txt",
+      _id: 1,
+      author: "PAROLA",
+      messageText: "Aber ich redde sehr gern drüber 😎🇨🇭",
+      messageType: "txt",
       mediaSrc: ""
     },
     {
-      id: 2,
-      author: "parola",
-      text: "Mit mir chasch du innovativi Chatbot Ads erstelle.",
-      type: "text",
+      _id: 2,
+      author: "PAROLA",
+      messageText: "Mit mir chasch du innovativi Chatbot Ads erstelle.",
+      messageType: "TXT",
       mediaSrc: ""
     }
   ])
 
   const [parolaIsWriting, setParolaWriting] = useState(false)
 
-  const loadNewOnboardingMessageHandler = () => {
-    let newOnboardingMessage = {
-      id: 3,
-      author: "parola",
-      text: "Wenn du meh wüsse willsch, frag mich, was ich chan oder wer ich bi 🤓",
-      type: "text",
-      mediaSrc: ""
-    }
+  // const loadNewOnboardingMessageHandler = () => {
 
-    setMessages(prevState => [...prevState, newOnboardingMessage])
-    setParolaWriting(false)
-  }
+  // }
 
   const [placeholderText, setPlaceholderText] = useState("")
 
-  // Add new onboarding message as soon as the user enters the onboarding screen for the first time
   useEffect(() => {
-    if (props.isActive) {
-      if (messages.length === 2) {
-        setParolaWriting(true)
-        setTimeout(loadNewOnboardingMessageHandler, 1000) // Short delay => makes it look more human
+    axios({
+      method: 'post',
+      url: props.apiUrl,
+      data: {
+        uuid: props.visitorId,
+      },
+    }).then((response) => {
+      if (response.data.length === 3) {
+        props.setFirstTime()
+        props.setChatState()
+        setMessages([...response.data])
+      }
+
+      if (response.data.length > 3) {
+        props.setFirstTime()
+        props.setChatState()
+        setMessages([...response.data])
+        props.removeOnboardingHandler()
+      }
+    })
+  }, [])
+
+  useEffect(() => {
+    if (props.firstTime) {
+      if (props.isActive) {
+        let newOnboardingMessage = {
+          _id: 3,
+          author: "PAROLA",
+          messageText: "Wenn du meh wüsse willsch, frag mich, was ich chan oder wer ich bi 🤓",
+          messageType: "TXT",
+          mediaSrc: ""
+        }
+        setMessages(prevState => [...prevState, newOnboardingMessage])
+
+        axios({
+          method: 'post',
+          url: props.apiUrl + "/new",
+          data: {
+            uuid: props.visitorId,
+            conversations: [...messages, newOnboardingMessage]
+          },
+        })
       }
     }
   }, [props.isActive])
@@ -64,26 +94,39 @@ export default function ChatBody(props) {
     let text = textInput.current.value.replace(/\s/g, ''); // Prevent sending empty messages
 
     if (text.length > 0) {
-      const newMessage = {
-        id: Math.random(),
-        author: "user",
-        text: textInput.current.value,
-        type: "text",
-        mediaSrc: ""
-      };
-
-      setParolaWriting(true)
-      setMessages(prevState => [...prevState, newMessage])
-      textInput.current.value = '';
       props.removeOnboardingHandler()
-
-      if (showOnboardingInfo) {
-        setOnboardingInfo(prevState => false)
+      setParolaWriting(true)
+      const newMessage = {
+        _id: Math.random(),
+        author: "USER",
+        messageText: textInput.current.value,
+        messageType: "TXT",
+        mediaSrc: ""
       }
+
+      setMessages(prevState => [...prevState, newMessage])
+
+      axios({
+        method: 'post',
+        url: props.apiUrl + "/add",
+        data: {
+          uuid: props.visitorId,
+          conversations: [newMessage]
+        },
+      }).then((response) => {
+        setTimeout(() => {
+          setMessages(response.data)
+          setParolaWriting(false)
+        }, 500)
+        textInput.current.value = '';
+        if (showOnboardingInfo) {
+          setOnboardingInfo(prevState => false)
+        }
+      })
     }
   };
 
-  const chatMessages = messages.map(message => <ChatMessage key={message.id} messageText={message.text} messageAuthor={message.author} messageType={message.type} mediaSrc={message.mediaSrc} />)
+  const chatMessages = messages.map(message => <ChatMessage key={message._id} messageText={message.messageText} messageAuthor={message.author} messageType={message.messageType} mediaSrc={message.mediaSrc} />)
 
   return <>
     <div className={props.isActive ? `${styles.chatMain} ${styles.active}` : `${styles.chatMain}`}>

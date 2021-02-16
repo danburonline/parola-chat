@@ -12,10 +12,6 @@ const messageSchema = new Schema({
       type: String,
     },
   },
-  messageTime: Date, // TODO Make this work
-  author: {
-    type: String
-  },
   messageType: {
     type: String,
     required: true,

@@ -3,7 +3,7 @@
   display: inline-block;
   max-width: 90%;
   margin-bottom: 7px;
-  padding: 10px 15px 5px;
+  padding: 10px 15px 10px;
   border-radius: 4px;
   background-color: #2962ff;
 }
@@ -35,16 +35,16 @@
 }
 
 .messageText {
-  margin-bottom: 5px;
   font-family: Roboto, sans-serif;
   color: #fff;
   font-size: 16px;
   line-height: 19px;
   white-space: pre-wrap;
+  overflow-wrap: break-word;
 }
 
-.messageText {
-  overflow-wrap: break-word;
+.messageText > p {
+margin-bottom: 2px;
 }
 
 .message:first-child {

@@ -12,6 +12,9 @@ const messageSchema = new Schema({
       type: String,
     },
   },
+  author: {
+    type: String
+  },
   messageType: {
     type: String,
     required: true,

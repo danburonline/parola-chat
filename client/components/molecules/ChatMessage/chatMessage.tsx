@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react"
 import styles from "./chatMessage.module.scss"
+import ReactMarkdown from 'react-markdown'
 
 export default function ChatMessage(props) {
   const messagesEndRef = useRef(null)
@@ -16,7 +17,7 @@ export default function ChatMessage(props) {
 
   return (
     <div ref={messagesEndRef} className={props.messageAuthor === "PAROLA" ? `${styles.message}` : `${styles.message} ${styles.user}`}>
-      <p className={styles.messageText}>{props.messageText}</p>
+      <ReactMarkdown className={styles.messageText}>{props.messageText}</ReactMarkdown>
     </div>
   )
 }

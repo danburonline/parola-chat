@@ -1,0 +1,26 @@
+.main {
+  display: flex;
+  height: 100vh;
+  min-height: 800px;
+  padding-left: 20px;
+  justify-content: center;
+  align-items: center;
+  background-color: #0039cb;
+}
+
+@media screen and (max-width: 991px) {
+  .main {
+    height: 100vh;
+    min-height: 1200px;
+    padding-left: 0px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .main {
+    min-height: 600px;
+  }
+}

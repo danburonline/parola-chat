@@ -1,0 +1,85 @@
+.chatHeader {
+  position: static;
+  display: flex;
+  height: 50%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background-color: #172231;
+}
+
+.chatHeader.active {
+  height: 60px;
+  padding-right: 15px;
+  padding-left: 20px;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.illustration {
+  width: 45%;
+}
+
+.illustration.active {
+  width: 30px;
+}
+
+.headline {
+  margin-top: 22px;
+}
+
+.headline.active {
+  display: none;
+}
+
+.chatHeading {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  font-family: Roboto, sans-serif;
+  color: #fff;
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.menuCloseButton {
+  position: relative;
+  left: auto;
+  top: 0%;
+  right: 0%;
+  bottom: auto;
+  width: 25px;
+  margin-left: auto;
+  padding: 5px;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: opacity 200ms ease;
+  cursor: pointer;
+}
+
+.menuCloseButton:hover {
+  opacity: 0.5;
+}
+
+.menuOpenButton {
+  display: block;
+  margin-left: auto;
+  padding: 5px;
+  transition: opacity 200ms ease;
+  cursor: pointer;
+}
+
+.menuOpenButton:hover {
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 479px) {
+  .chatHeader {
+    border-radius: 0px;
+  }
+}

@@ -1,0 +1,33 @@
+.chat {
+  position: relative;
+  width: 300px;
+  height: 600px;
+  min-height: 600px;
+  min-width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 30px 60px -1px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+}
+
+.chat > #activeInput {
+  transition: transform 200ms ease;
+}
+
+.chat.active {
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+@media screen and (max-width: 479px) {
+  .chat {
+    max-height: 600px;
+    max-width: 300px;
+    min-height: auto;
+    min-width: auto;
+    border-radius: 0px;
+  }
+
+  .chat.active {
+    border-radius: 0px;
+  }
+}

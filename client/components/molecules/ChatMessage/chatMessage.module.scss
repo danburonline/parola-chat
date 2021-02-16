@@ -1,0 +1,267 @@
+.message {
+  position: relative;
+  display: inline-block;
+  max-width: 90%;
+  margin-bottom: 7px;
+  padding: 10px 15px 5px;
+  border-radius: 4px;
+  background-color: #2962ff;
+}
+
+.message:before {
+  content: url('./../../../public/svgs/bubble-corner.svg');
+  position: absolute;
+  top: calc(100% - 12px);
+  fill: blue;
+  left: 0;
+  height: 20px;
+  width: 20px;
+}
+
+.message.user:before {
+  content: url('./../../../public/svgs/bubble-corner-user.svg');
+  position: absolute;
+  top: calc(100% - 12px);
+  right: 0;
+  left: auto;
+  height: 20px;
+  width: 20px;
+}
+
+.message.user {
+  align-self: flex-end;
+  background-color: #ff1744;
+  text-align: right;
+}
+
+.messageText {
+  margin-bottom: 5px;
+  font-family: Roboto, sans-serif;
+  color: #fff;
+  font-size: 16px;
+  line-height: 19px;
+  white-space: pre-wrap;
+}
+
+.messageText {
+  overflow-wrap: break-word;
+}
+
+.message:first-child {
+  width: 170px;
+  background-color: #2962ff;
+}
+
+.message.active:first-child {
+  margin-top: 40px;
+}
+
+.message:last-child {
+  margin-bottom: 25px;
+}
+
+// ! All the other stylings for the other message types
+
+// .message.video {
+//   width: 90%;
+//   padding-bottom: 15px;
+// }
+
+// .message.image {
+//   width: 90%;
+//   padding-bottom: 15px;
+// }
+
+// .message.button {
+//   padding-bottom: 15px;
+//   font-weight: 700;
+// }
+
+// .link-url {
+//   overflow-wrap: break-word;
+// }
+
+// .image {
+//   width: 100%;
+// }
+
+// .chat-button {
+//   display: flex;
+//   width: 100%;
+//   height: 40px;
+//   flex-direction: row;
+//   justify-content: center;
+//   align-items: center;
+//   border-radius: 4px;
+//   background-color: #0039cb;
+//   transition: background-color 200ms ease;
+//   font-family: Roboto, sans-serif;
+//   color: #fff;
+//   font-weight: 700;
+//   text-align: center;
+//   text-decoration: none;
+//   cursor: pointer;
+// }
+
+// .chat-button:hover {
+//   background-color: #172231;
+//   text-decoration: none;
+// }
+
+// .chat-buttonText {
+//   margin-bottom: 0px;
+//   font-size: 16px;
+//   line-height: 16px;
+//   text-decoration: none;
+// }
+
+// .link-icon {
+//   margin-right: 10px;
+//   transform: translate(0px, -1px);
+// }
+
+// .link-icon.slider {
+//   margin-right: 0px;
+//   float: right;
+//   opacity: 0.5;
+// }
+
+// .link-url {
+//   margin-top: 15px;
+//   margin-bottom: 5px;
+//   opacity: 0.5;
+//   font-family: Roboto, sans-serif;
+//   color: #fff;
+//   font-size: 12px;
+//   line-height: 12px;
+//   font-weight: 400;
+// }
+
+// .button-link {
+//   width: 100%;
+//   text-decoration: none;
+// }
+
+// .slider-mask {
+//   border-top-left-radius: 4px;
+//   border-bottom-left-radius: 4px;
+// }
+
+// .chat-slider {
+//   width: 260px;
+//   height: 250px;
+//   background-color: transparent;
+//   margin-bottom: 60px;
+// }
+
+// .slide {
+//   width: 90%;
+//   max-width: 90%;
+//   margin-right: 15px;
+//   padding: 15px;
+//   border-radius: 4px;
+//   background-color: #2962ff;
+// }
+
+// .left-arrow {
+//   left: 0%;
+//   top: auto;
+//   right: auto;
+//   bottom: 0%;
+//   display: none;
+//   height: 30px;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: flex-start;
+// }
+
+// .right-arrow {
+//   position: absolute;
+//   left: auto;
+//   top: auto;
+//   right: 0%;
+//   bottom: 0%;
+//   display: none;
+//   height: 30px;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: flex-end;
+// }
+
+// .slider-nav {
+//   position: relative;
+//   left: 0%;
+//   top: auto;
+//   right: 0%;
+//   bottom: 0%;
+//   display: flex;
+//   width: 100%;
+//   height: 25px;
+//   margin-top: 10px;
+//   margin-bottom: 10px;
+//   padding-top: 0px;
+//   padding-right: 24px;
+//   justify-content: flex-end;
+//   align-items: center;
+// }
+
+// .slider-image {
+//   width: 100%;
+//   height: 120px;
+//   background-position: 50% 50%;
+//   background-size: cover;
+// }
+
+// .slider-heading {
+//   margin-top: 10px;
+//   margin-bottom: 5px;
+//   font-family: Roboto, sans-serif;
+//   color: #fff;
+//   font-size: 16px;
+//   line-height: 19px;
+// }
+
+// .slider-text {
+//   margin-bottom: 0px;
+//   font-family: Roboto, sans-serif;
+//   color: #fff;
+//   line-height: 17px;
+//   letter-spacing: 0.1px;
+// }
+
+// .icon {
+//   position: absolute;
+//   left: 0px;
+//   display: none;
+//   background-color: red;
+// }
+
+// .w-slider-aria-label {
+//   display: none;
+// }
+
+// .w-slider-dot {
+//   margin: 0 3px 0 3px;
+// }
+// .w-slider-nav.w-round > div {
+//   background-color: rgba(41, 98, 255, 0.5);
+// }
+// .w-slider-nav-invert > div.w-active {
+//   background-color: #2962ff;
+// }
+// .w-slider-arrow-left,
+// .w-slider-arrow-right {
+//   color: #2962ff;
+// }
+
+// .slider-link {
+//   width: 100%;
+//   height: 100%;
+//   transition: opacity 200ms ease;
+//   text-decoration: none;
+//   cursor: pointer;
+// }
+
+// .slider-link:hover {
+//   opacity: 0.75;
+// }

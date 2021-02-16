@@ -1,4 +1,4 @@
-import styles from "../../styles/Home.module.scss"
+import styles from "./onboardingInfo.module.scss"
 
 export default function OnboardingInfo() {
   return <>

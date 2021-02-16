@@ -1,8 +1,8 @@
-import styles from "../../styles/Home.module.scss"
+import styles from "./chat.module.scss"
 import { useState } from "react"
 
-import ChatBody from "../organisms/chatBody"
-import ChatHeader from "../organisms/chatHeader"
+import ChatBody from "../../organisms/ChatBody/chatBody"
+import ChatHeader from "../../organisms/ChatHeader/chatHeader"
 
 export default function Chat() {
 

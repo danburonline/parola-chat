@@ -1,7 +1,6 @@
 import { useState } from "react"
-import styles from "../../styles/Home.module.scss"
-
-import ChatMenu from "../molecules/chatMenu"
+import styles from "./chatHeader.module.scss"
+import ChatMenu from "../../molecules/ChatMenu/chatMenu"
 
 export default function ChatHeader(props) {
   const [menuState, setMenuState] = useState(false)

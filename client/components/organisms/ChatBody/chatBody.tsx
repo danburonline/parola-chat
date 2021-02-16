@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react"
-import styles from "../../styles/Home.module.scss"
+import styles from "./chatBody.module.scss"
 
-import ChatInput from "../molecules/chatInput"
-import ChatMessage from "../molecules/chatMessage"
-import Loader from "../atoms/loader"
-import Fade from "../atoms/fade"
-import QuickReplies from "../organisms/quickReplies"
-import OnboardingInfo from "../organisms/onboardingInfo"
+import ChatInput from "../../molecules/ChatInput/chatInput"
+import ChatMessage from "../../molecules/ChatMessage/chatMessage"
+import Loader from "../../atoms/Loader/loader"
+import Fade from "../../atoms/Fade/fade"
+import QuickReplies from "../QuickReplies/quickReplies"
+import OnboardingInfo from "../OnboardingInfo/onboardingInfo"
 
 export default function ChatBody(props) {
   const [messages, setMessages] = useState([

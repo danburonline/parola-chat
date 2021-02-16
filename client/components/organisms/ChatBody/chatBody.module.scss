@@ -1,0 +1,37 @@
+.chatMain {
+  display: flex;
+  height: 50%;
+  padding-top: 40px;
+  padding-right: 40px;
+  padding-left: 40px;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background-color: #fff;
+  flex-shrink: 1;
+}
+
+.chatMain.active {
+  display: flex;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 470px;
+  background-color: transparent;
+  background-color: #fff;
+}
+
+.chatMain.active:after {
+  content: '–'; // Margin-bottom doesn't work on Firefox, this is a solution for it
+  display: block;
+  width: 100%;
+  opacity: 0;
+}
+
+@media screen and (max-width: 479px) {
+  .chatMain {
+    border-radius: 0px;
+  }
+}

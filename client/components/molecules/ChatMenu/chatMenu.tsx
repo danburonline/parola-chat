@@ -1,8 +1,8 @@
-import styles from "../../styles/Home.module.scss"
+import styles from "./chatMenu.module.scss"
 
 export default function ChatMenu() {
   return (
-    <div className={styles.chatMenu}>
+    <nav className={styles.chatMenu}>
       <a href="https://google.com" target="_blank" className={styles.menuLink}>
         <h3 className={styles.menuText}>Datenschutzbestimmungen</h3>
       </a>
@@ -29,6 +29,6 @@ export default function ChatMenu() {
           </a>
         </div>
       </div>
-    </div>
+    </nav>
   )
 }

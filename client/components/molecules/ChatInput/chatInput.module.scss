@@ -1,0 +1,108 @@
+.inputField {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0 0 15px;
+  outline: none;
+  position: absolute;
+  height: 100%;
+  width: calc(100% - 60px);
+  color: #172231;
+  border: none;
+  border-radius: 3px 0 0 3px;
+  transition: background-color 200ms ease;
+}
+
+.inputField::placeholder {
+  color: #172231;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  line-height: normal;
+  font-weight: 300;
+  opacity: 50%;
+  line-height: 45px;
+  letter-spacing: 0.5px;
+}
+
+.inputField:focus {
+  padding: 0 0 0 15px;
+  outline: none;
+  border: none;
+  background-color: rgb(246, 246, 246);
+}
+
+.inputText {
+  margin-bottom: 0px;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.inputText.active {
+  opacity: 0.5;
+  color: #172231;
+  font-weight: 300;
+}
+
+.input {
+  position: absolute;
+  left: 40px;
+  top: auto;
+  right: 40px;
+  bottom: 30px;
+  display: flex;
+  width: auto;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background-color: #172231;
+  transition: background-color 20 0ms ease;
+  font-family: Roboto, sans-serif;
+  color: #fff;
+  font-weight: 700;
+  cursor: text;
+}
+
+.input:hover {
+  border-style: solid;
+  border-width: 5px;
+  border-color: #172231;
+  background-color: rgba(23, 34, 49, 0.9);
+  font-weight: 400;
+  text-align: left;
+}
+
+.input.active {
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  width: auto;
+  height: 50px;
+  justify-content: space-between;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #172231;
+  background-color: transparent;
+}
+
+.inputButton {
+  position: absolute;
+  right: 0;
+  display: flex;
+  width: 60px;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: #172231;
+  transition: opacity 200ms ease;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.inputButton:hover {
+  opacity: 0.75;
+}

@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react"
-import styles from "../../styles/Home.module.scss"
+import styles from "./chatInput.module.scss"
 
 export default function ChatInput(props) {
   const textInput = useRef(null);

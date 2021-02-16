@@ -1,0 +1,38 @@
+.button {
+  display: flex;
+  width: 170px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background-color: #172231;
+}
+
+.buttonIcon {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.buttonText {
+  margin-bottom: 0px;
+  font-family: Roboto, sans-serif;
+  color: #fff;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.link {
+  margin-top: 30px;
+  transition: opacity 200ms ease;
+  transition: transform 200ms ease, opacity 200ms ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link:hover {
+  opacity: 0.85;
+  transform: scale(1.05);
+}

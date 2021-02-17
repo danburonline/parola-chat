@@ -27,12 +27,10 @@
 .link {
   margin-top: 30px;
   transition: opacity 200ms ease;
-  transition: transform 200ms ease, opacity 200ms ease;
   text-decoration: none;
   cursor: pointer;
 }
 
 .link:hover {
   opacity: 0.85;
-  transform: scale(1.05);
 }

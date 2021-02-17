@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react"
+import Typewriter from 'typewriter-effect';
 import styles from "./chatInput.module.scss"
 
 export default function ChatInput(props) {
@@ -42,7 +43,16 @@ export default function ChatInput(props) {
           ) :
           (
             <div onClick={props.setChatState} className={styles.input}>
-              <p className={styles.inputText}>Probier mich us</p>
+              <span className={styles.inputText}>
+                <Typewriter
+                  onInit={() => { /* Needed an onInit function, otherwise it throws an error */}}
+                  options={{
+                    strings: ['Probier mich us', 'Schriib mit mir', 'Stell mir eh Frag', 'Lueg was ich cha'],
+                    autoStart: true,
+                    loop: true,
+                  }}
+                />
+              </span>
             </div>
           )
       }

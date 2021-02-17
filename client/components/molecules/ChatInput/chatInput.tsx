@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react"
 import Typewriter from 'typewriter-effect';
 import styles from "./chatInput.module.scss"
+import { motion } from 'framer-motion'
 
 export default function ChatInput(props) {
   const textInput = useRef(null);
@@ -32,20 +33,20 @@ export default function ChatInput(props) {
       {
         props.isActive ?
           (
-            <form onSubmit={handleEnter}>
+            <motion.form initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }} onSubmit={handleEnter}>
               <div id="activeInput" className={`${styles.input} ${styles.active}`}>
                 <input className={styles.inputField} type="text" value={inputText} placeholder="Antwort schriibe" onChange={() => handleInputText(textInput)} ref={textInput} autoFocus />
                 <div className={styles.inputButton} onClick={handleInput}>
-                  <img src="/svgs/paperplane-icon.svg" alt="Send message paperplane icon" className={styles.paperplaneIcon} />
+                  <motion.img whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} src="/svgs/paperplane-icon.svg" alt="Send message paperplane icon" className={styles.paperplaneIcon} />
                 </div>
               </div>
-            </form>
+            </motion.form>
           ) :
           (
-            <div onClick={props.setChatState} className={styles.input}>
+            <motion.div whileHover={{ scale: 1.05 }} onClick={props.setChatState} className={styles.input}>
               <span className={styles.inputText}>
                 <Typewriter
-                  onInit={() => { /* Needed an onInit function, otherwise it throws an error */}}
+                  onInit={() => { /* Needed an onInit function, otherwise it throws an error */ }}
                   options={{
                     strings: ['Probier mich us', 'Schriib mit mir', 'Stell mir eh Frag', 'Lueg was ich cha'],
                     autoStart: true,
@@ -53,7 +54,7 @@ export default function ChatInput(props) {
                   }}
                 />
               </span>
-            </div>
+            </motion.div>
           )
       }
     </>

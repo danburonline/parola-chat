@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import styles from "./chatBody.module.scss"
 import axios from 'axios';
+import { AnimatePresence, motion } from 'framer-motion'
 
 import ChatInput from "../../molecules/ChatInput/chatInput"
 import ChatMessage from "../../molecules/ChatMessage/chatMessage"
@@ -8,6 +9,15 @@ import Loader from "../../atoms/Loader/loader"
 import Fade from "../../atoms/Fade/fade"
 import QuickReplies from "../QuickReplies/quickReplies"
 import OnboardingInfo from "../OnboardingInfo/onboardingInfo"
+
+const variants = {
+  active: {
+    height: 470
+  },
+  inactive: {
+    height: "auto"
+  }
+}
 
 export default function ChatBody(props) {
 
@@ -30,10 +40,6 @@ export default function ChatBody(props) {
 
   const [parolaIsWriting, setParolaWriting] = useState(false)
 
-  // const loadNewOnboardingMessageHandler = () => {
-
-  // }
-
   const [placeholderText, setPlaceholderText] = useState("")
 
   useEffect(() => {
@@ -53,7 +59,7 @@ export default function ChatBody(props) {
       if (response.data.length > 3) {
         props.setFirstTime()
         props.setChatState()
-        setMessages([...response.data])
+        setMessages(prevState => [...response.data])
         props.removeOnboardingHandler()
       }
     })
@@ -78,6 +84,8 @@ export default function ChatBody(props) {
             uuid: props.visitorId,
             conversations: [...messages, newOnboardingMessage]
           },
+        }).then((response) => {
+          setMessages([...response.data])
         })
       }
     }
@@ -115,7 +123,7 @@ export default function ChatBody(props) {
         },
       }).then((response) => {
         setTimeout(() => {
-          setMessages(response.data)
+          setMessages(prevState => [...prevState, ...response.data.slice(response.data.length - 1)])
           setParolaWriting(false)
         }, 500)
         textInput.current.value = '';
@@ -129,13 +137,25 @@ export default function ChatBody(props) {
   const chatMessages = messages.map(message => <ChatMessage key={message._id} messageText={message.messageText} messageAuthor={message.author} messageType={message.messageType} mediaSrc={message.mediaSrc} />)
 
   return <>
-    <div className={props.isActive ? `${styles.chatMain} ${styles.active}` : `${styles.chatMain}`}>
+    <motion.div
+      variants={variants}
+      animate={props.isActive ? "active" : "inactive"}
+      className={props.isActive ? `${styles.chatMain} ${styles.active}` : `${styles.chatMain}`}>
       {chatMessages}
       {parolaIsWriting ? <Loader /> : null}
-    </div>
+    </motion.div>
     {props.isActive ? <Fade /> : null}
     {props.onboarding && props.isActive ? <QuickReplies removeOnboardingHandler={props.removeOnboardingHandler} handleOnboardingInfo={onboardingInfoHandler} /> : null}
-    {showOnboardingInfo ? <OnboardingInfo /> : null}
+    <AnimatePresence>
+      {showOnboardingInfo ?
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.2 }}
+          exit={{ opacity: 0 }}>
+          <OnboardingInfo />
+        </motion.div> : null}
+    </AnimatePresence>
     <ChatInput handleUserInput={handleUserInput} placeholderText={placeholderText} isActive={props.isActive} setChatState={props.setChatState} />
   </>
 }

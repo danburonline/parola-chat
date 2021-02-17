@@ -1,5 +1,5 @@
 import styles from "./chat.module.scss"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 import ChatBody from "../../organisms/ChatBody/chatBody"
 import ChatHeader from "../../organisms/ChatHeader/chatHeader"

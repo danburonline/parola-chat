@@ -8,6 +8,14 @@
   background-color: #0039cb;
 }
 
+.spinnerWrapper {
+  width: 300px;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media screen and (max-width: 991px) {
   .main {
     height: 100vh;

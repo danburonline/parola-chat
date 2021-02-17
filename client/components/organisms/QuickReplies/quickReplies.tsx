@@ -1,6 +1,7 @@
 import { useState } from "react"
 import styles from "./quickReplies.module.scss"
 import QuickReply from "../../molecules/QuickReply/quickReply"
+import { motion } from 'framer-motion'
 
 export default function QuickReplies(props) {
   const [quickRepliesText, setQuickRepliesText] = useState([
@@ -14,8 +15,8 @@ export default function QuickReplies(props) {
   const quickReplies = quickRepliesText.map(quickReply => <QuickReply removeOnboardingHandler={props.removeOnboardingHandler} handleOnboardingInfo={props.handleOnboardingInfo} key={Math.random()} text={quickReply} />)
 
   return (
-    <div className={styles.quickRepliesContainer}>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }} className={styles.quickRepliesContainer}>
       {quickReplies}
-    </div>
+    </motion.div>
   )
 }

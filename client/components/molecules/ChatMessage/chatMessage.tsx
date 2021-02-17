@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react"
 import styles from "./chatMessage.module.scss"
 import ReactMarkdown from 'react-markdown'
+import { motion } from 'framer-motion'
 
 export default function ChatMessage(props) {
   const messagesEndRef = useRef(null)
@@ -16,8 +17,8 @@ export default function ChatMessage(props) {
   // TODO Conditionally display the other message types as well
 
   return (
-    <div ref={messagesEndRef} className={props.messageAuthor === "PAROLA" ? `${styles.message}` : `${styles.message} ${styles.user}`}>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} ref={messagesEndRef} className={props.messageAuthor === "PAROLA" ? `${styles.message}` : `${styles.message} ${styles.user}`}>
       <ReactMarkdown className={styles.messageText}>{props.messageText}</ReactMarkdown>
-    </div>
+    </motion.div>
   )
 }

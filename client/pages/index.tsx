@@ -5,7 +5,7 @@ import FingerprintJS from '@fingerprintjs/fingerprintjs-pro';
 
 import Chat from "../components/templates/Chat/chat"
 import HeroInfo from "../components/organisms/HeroInfo/heroInfo"
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"; // Add a loading spinner when the messages are being fetched from the server
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Spinner from "react-loader-spinner";
 
 export async function getStaticProps() {
@@ -30,7 +30,8 @@ export default function Home(props) {
       const result = await fp.get();
       const resultVisitorId = result.visitorId;
       setVisitorId(resultVisitorId)
-      console.log(visitorId)
+      // ! Uncomment for development purposes (to use the API in an API software)
+      // console.log(visitorId)
     }
 
     fetchVisitorId()
@@ -50,12 +51,13 @@ export default function Home(props) {
     </Head>
 
     <main className={styles.main}>
-      {visitorId ? <Chat visitorId={visitorId} apiUrl={props.API_URL} /> : <Spinner
+      {visitorId ? <Chat visitorId={visitorId} apiUrl={props.API_URL} /> : <div className={styles.spinnerWrapper}><Spinner
         type="ThreeDots"
         color="white"
         height={75}
         width={75}
-        timeout={3000} />}
+        timeout={3000} />
+      </div>}
       <HeroInfo />
     </main>
   </>

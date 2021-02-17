@@ -37,7 +37,7 @@ export default function ChatInput(props) {
               <div id="activeInput" className={`${styles.input} ${styles.active}`}>
                 <input className={styles.inputField} type="text" value={inputText} placeholder="Antwort schriibe" onChange={() => handleInputText(textInput)} ref={textInput} autoFocus />
                 <div className={styles.inputButton} onClick={handleInput}>
-                  <motion.img whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} src="/svgs/paperplane-icon.svg" alt="Send message paperplane icon" className={styles.paperplaneIcon} />
+                  <motion.img width="60" height="60" whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} src="/svgs/paperplane-icon.svg" alt="Send message paperplane icon" className={styles.paperplaneIcon} />
                 </div>
               </div>
             </motion.form>

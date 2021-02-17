@@ -38,7 +38,9 @@ export default function Home(props) {
   }, [visitorId])
 
   return <>
-    <Head>
+  <html lang="de" />
+    <Head >
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <meta charSet="utf-8" />
       <title>Parola Chat</title>
       <meta content="Parola Chat is a full-stack advertisement framework to develop encrypted cross-website conversational experiences with Swiss German natural language understanding/processing." name="description" />

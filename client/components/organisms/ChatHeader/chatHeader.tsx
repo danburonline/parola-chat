@@ -26,19 +26,19 @@ export default function ChatHeader(props) {
       }>
       {props.isActive ? (
         <>
-          <motion.img key={1} initial={{ opacity: 0 }} animate={{ opacity: 1 }} src="/svgs/illustration.svg" alt="Parola illustration" className={`${styles.illustration} ${styles.active}`} />
+          <motion.img width="30" height="30" key={1} initial={{ opacity: 0 }} animate={{ opacity: 1 }} src="/svgs/illustration.svg" alt="Parola illustration" className={`${styles.illustration} ${styles.active}`} />
           <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={styles.chatHeading}>Parola</motion.h2>
           {menuState ? (
             <>
-              <img src="/svgs/close-icon.svg" onClick={menuStateHandler} alt="Close menu" className={styles.menuCloseButton} />
+              <img width="25" height="25" src="/svgs/close-icon.svg" onClick={menuStateHandler} alt="Close menu" className={styles.menuCloseButton} />
               <ChatMenu />
             </>
-          ) : (<img src="/svgs/meatballs-icon.svg" onClick={menuStateHandler} alt="Navigation" className={styles.menuOpenButton} />)}
+          ) : (<img width="15" height="30" src="/svgs/meatballs-icon.svg" onClick={menuStateHandler} alt="Navigation" className={styles.menuOpenButton} />)}
         </>
       ) : (
           <>
-            <motion.img key={2} initial={{ opacity: 0 }} animate={{ opacity: 1 }} src="/svgs/illustration.svg" alt="Parola illustration" className={styles.illustration} />
-            <motion.img initial={{ opacity: 0 }} animate={{ opacity: 1 }} src="/svgs/headline.svg" alt="Ich bin keine Werbung" className={styles.headline} />
+            <motion.img width="135" height="135" key={2} initial={{ opacity: 0 }} animate={{ opacity: 1 }} src="/svgs/illustration.svg" alt="Parola illustration" className={styles.illustration} />
+            <motion.img width="202" height="64" initial={{ opacity: 0 }} animate={{ opacity: 1 }} src="/svgs/headline.svg" alt="Ich bin keine Werbung" className={styles.headline} />
           </>
         )}
     </motion.div>

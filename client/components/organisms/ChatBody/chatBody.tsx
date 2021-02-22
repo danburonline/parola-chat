@@ -9,6 +9,7 @@ import Loader from "../../atoms/Loader/loader"
 import Fade from "../../atoms/Fade/fade"
 import QuickReplies from "../QuickReplies/quickReplies"
 import OnboardingInfo from "../OnboardingInfo/onboardingInfo"
+import { Konfettikanone } from "react-konfettikanone";
 
 const variants = {
   active: {
@@ -57,10 +58,20 @@ export default function ChatBody(props) {
       }
 
       if (response.data.length > 3) {
+        const kickOffMessage = {
+          _id: Math.random(),
+          author: "PAROLA",
+          messageText: "🎉🎉🎉🎉🎉 Und da gseht mer sich widr! Was chani hüt für dich mache?",
+          messageType: "KICK_OFF",
+          mediaSrc: ""
+        }
         props.setFirstTime()
         props.setChatState()
-        setMessages(prevState => [...response.data])
+        setMessages(() => [...response.data, kickOffMessage])
         props.removeOnboardingHandler()
+        setTimeout(() => {
+          setLaunchConfetti({ launch: true })
+        }, 500)
       }
     })
   }, [])
@@ -134,6 +145,10 @@ export default function ChatBody(props) {
     }
   };
 
+  const [launchConfetti, setLaunchConfetti] = useState({
+    launch: false
+  })
+
   const chatMessages = messages.map(message => <ChatMessage key={message._id} messageText={message.messageText} messageAuthor={message.author} messageType={message.messageType} mediaSrc={message.mediaSrc} />)
 
   return <>
@@ -157,5 +172,8 @@ export default function ChatBody(props) {
         </motion.div> : null}
     </AnimatePresence>
     <ChatInput handleUserInput={handleUserInput} placeholderText={placeholderText} isActive={props.isActive} setChatState={props.setChatState} />
+    <div className={styles.confettiWrapper}>
+      <Konfettikanone {...launchConfetti}></Konfettikanone>
+    </div>
   </>
 }

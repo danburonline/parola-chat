@@ -38,7 +38,6 @@ export default function Home(props) {
   }, [visitorId])
 
   return <>
-  <html lang="de" />
     <Head >
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <meta charSet="utf-8" />

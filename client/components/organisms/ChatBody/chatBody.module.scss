@@ -30,6 +30,10 @@
   opacity: 0;
 }
 
+.confettiWrapper {
+  pointer-events: none;
+}
+
 @media screen and (max-width: 479px) {
   .chatMain {
     border-radius: 0px;

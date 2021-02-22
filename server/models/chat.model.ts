@@ -19,12 +19,7 @@ const messageSchema = new Schema({
     type: String,
     required: true,
   },
-  mediaSrc: {
-    type: String,
-  },
-  mediaAlt: {
-    type: String,
-  }
+  mediaSrc: [Schema.Types.Mixed]
 });
 
 const chatSchema = new Schema({

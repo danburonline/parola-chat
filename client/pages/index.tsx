@@ -47,7 +47,6 @@ export default function Home(props) {
       <link rel="preconnect" href="https://fonts.gstatic.com" />
       <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
-      <script src="js/w-interactions.min.js" defer></script>
       <link rel="icon" href="/favicon.png" />
     </Head>
 

@@ -18,7 +18,9 @@
     "react-konfettikanone": "^2.1.3",
     "react-loader-spinner": "^4.0.0",
     "react-markdown": "^5.0.3",
+    "react-slick": "^0.28.0",
     "sass": "^1.32.6",
+    "slick-carousel": "^1.8.1",
     "typewriter-effect": "^2.17.0"
   },
   "devDependencies": {

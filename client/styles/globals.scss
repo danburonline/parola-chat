@@ -1,43 +1,50 @@
 @import 'normalize.scss';
-[class*=' w-icon-'],
-[class^='w-icon-'] {
-  font-family: webflow-icons !important;
-  speak: none;
-  font-style: normal;
-  font-weight: 400;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+.customDots {
+  margin: 0;
+  height: auto;
+  list-style-type: none;
+  display: flex !important;
+  justify-content: flex-end;
+  flex-direction: row;
+  align-items: flex-end;
+  padding-left: 0px;
+  padding-right: 37.5px;
+  padding-top: 15px;
 }
-.w-icon-slider-right:before {
-  content: '\e600';
+
+.customDots > li {
+  opacity: 0.5;
 }
-.w-icon-slider-left:before {
-  content: '\e601';
+
+.customDots > li > button:focus {
+  outline: none !important;
+  border: none !important;
 }
-.w-icon-nav-menu:before {
-  content: '\e602';
+
+.customDots > li > button {
+  background-color: #2962ff;
+  border-radius: 50px;
+  height: 20px;
+  width: 20px;
+  color: #2962ff;
+  margin: 2.5px;
 }
-.w-icon-arrow-down:before,
-.w-icon-dropdown-toggle:before {
-  content: '\e603';
+
+.customDots > li.slick-active {
+  opacity: 1 !important;
 }
-.w-icon-file-upload-remove:before {
-  content: '\e900';
-}
-.w-icon-file-upload-icon:before {
-  content: '\e903';
-}
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 html {
   height: 100%;
 }
+
 body {
   margin: 0;
   min-height: 100%;
@@ -74,121 +81,10 @@ html.w-mod-touch * {
 .w-clearfix:after {
   clear: both;
 }
-.w-hidden {
-  display: none;
-}
-.w-button {
-  display: inline-block;
-  padding: 9px 15px;
-  background-color: #3898ec;
-  color: #fff;
-  border: 0;
-  line-height: inherit;
-  text-decoration: none;
-  cursor: pointer;
-  border-radius: 0;
-}
-input.w-button {
-  -webkit-appearance: button;
-}
 html[data-w-dynpage] [data-w-cloak] {
   color: transparent !important;
 }
-.w-webflow-badge,
-.w-webflow-badge * {
-  position: static;
-  left: auto;
-  top: auto;
-  right: auto;
-  bottom: auto;
-  z-index: auto;
-  display: block;
-  visibility: visible;
-  overflow: visible;
-  overflow-x: visible;
-  overflow-y: visible;
-  box-sizing: border-box;
-  width: auto;
-  height: auto;
-  max-height: none;
-  max-width: none;
-  min-height: 0;
-  min-width: 0;
-  margin: 0;
-  padding: 0;
-  float: none;
-  clear: none;
-  border: 0 none transparent;
-  border-radius: 0;
-  background: 0 0;
-  background-image: none;
-  background-position: 0 0;
-  background-size: auto auto;
-  background-repeat: repeat;
-  background-origin: padding-box;
-  background-clip: border-box;
-  background-attachment: scroll;
-  background-color: transparent;
-  box-shadow: none;
-  opacity: 1;
-  transform: none;
-  transition: none;
-  direction: ltr;
-  font-family: inherit;
-  font-weight: inherit;
-  color: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  font-style: inherit;
-  font-variant: inherit;
-  text-align: inherit;
-  letter-spacing: inherit;
-  text-decoration: inherit;
-  text-indent: 0;
-  text-transform: inherit;
-  list-style-type: disc;
-  text-shadow: none;
-  font-smoothing: auto;
-  vertical-align: baseline;
-  cursor: inherit;
-  white-space: inherit;
-  word-break: normal;
-  word-spacing: normal;
-  word-wrap: normal;
-}
-.w-webflow-badge {
-  position: fixed !important;
-  display: inline-block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  z-index: 2147483647 !important;
-  top: auto !important;
-  right: 12px !important;
-  bottom: 12px !important;
-  left: auto !important;
-  color: #aaadb0 !important;
-  background-color: #fff !important;
-  border-radius: 3px !important;
-  padding: 6px 8px 6px 6px !important;
-  font-size: 12px !important;
-  opacity: 1 !important;
-  line-height: 14px !important;
-  text-decoration: none !important;
-  transform: none !important;
-  margin: 0 !important;
-  width: auto !important;
-  height: auto !important;
-  overflow: visible !important;
-  white-space: nowrap;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-}
-.w-webflow-badge > img {
-  display: inline-block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  vertical-align: middle !important;
-}
+
 h1,
 h2,
 h3,
@@ -231,20 +127,6 @@ h6 {
 p {
   margin-top: 0;
   margin-bottom: 10px;
-}
-blockquote {
-  margin: 0 0 10px;
-  padding: 10px 20px;
-  border-left: 5px solid #e2e2e2;
-  font-size: 18px;
-  line-height: 22px;
-}
-figure {
-  margin: 0 0 10px;
-}
-figcaption {
-  margin-top: 5px;
-  text-align: center;
 }
 ol,
 ul {
@@ -402,100 +284,6 @@ textarea.w-select {
 .w-radio-input {
   margin-top: 3px;
 }
-.w-file-upload {
-  display: block;
-  margin-bottom: 10px;
-}
-.w-file-upload-input {
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -100;
-}
-.w-file-upload-default,
-.w-file-upload-success,
-.w-file-upload-uploading {
-  display: inline-block;
-  color: #333;
-}
-.w-file-upload-error {
-  display: block;
-  margin-top: 10px;
-}
-.w-file-upload-default.w-hidden,
-.w-file-upload-error.w-hidden,
-.w-file-upload-success.w-hidden,
-.w-file-upload-uploading.w-hidden {
-  display: none;
-}
-.w-file-upload-uploading-btn {
-  display: flex;
-  font-size: 14px;
-  font-weight: 400;
-  cursor: pointer;
-  margin: 0;
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  background-color: #fafafa;
-}
-.w-file-upload-file {
-  display: flex;
-  flex-grow: 1;
-  justify-content: space-between;
-  margin: 0;
-  padding: 8px 9px 8px 11px;
-  border: 1px solid #ccc;
-  background-color: #fafafa;
-}
-.w-file-upload-file-name {
-  font-size: 14px;
-  font-weight: 400;
-  display: block;
-}
-.w-file-remove-link {
-  margin-top: 3px;
-  margin-left: 10px;
-  width: auto;
-  height: auto;
-  padding: 3px;
-  display: block;
-  cursor: pointer;
-}
-.w-icon-file-upload-remove {
-  margin: auto;
-  font-size: 10px;
-}
-.w-file-upload-error-msg {
-  display: inline-block;
-  color: #ea384c;
-  padding: 2px 0;
-}
-.w-file-upload-info {
-  display: inline-block;
-  line-height: 38px;
-  padding: 0 12px;
-}
-.w-file-upload-label {
-  display: inline-block;
-  font-size: 14px;
-  font-weight: 400;
-  cursor: pointer;
-  margin: 0;
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  background-color: #fafafa;
-}
-.w-icon-file-upload-icon,
-.w-icon-file-upload-uploading {
-  display: inline-block;
-  margin-right: 8px;
-  width: 20px;
-}
-.w-icon-file-upload-uploading {
-  height: 20px;
-}
 .w-container {
   margin-left: auto;
   margin-right: auto;
@@ -528,58 +316,6 @@ textarea.w-select {
 }
 .w-row:after {
   clear: both;
-}
-.w-row .w-row {
-  margin-left: 0;
-  margin-right: 0;
-}
-.w-col {
-  position: relative;
-  float: left;
-  width: 100%;
-  min-height: 1px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-.w-col .w-col {
-  padding-left: 0;
-  padding-right: 0;
-}
-.w-col-1 {
-  width: 8.33333333%;
-}
-.w-col-2 {
-  width: 16.66666667%;
-}
-.w-col-3 {
-  width: 25%;
-}
-.w-col-4 {
-  width: 33.33333333%;
-}
-.w-col-5 {
-  width: 41.66666667%;
-}
-.w-col-6 {
-  width: 50%;
-}
-.w-col-7 {
-  width: 58.33333333%;
-}
-.w-col-8 {
-  width: 66.66666667%;
-}
-.w-col-9 {
-  width: 75%;
-}
-.w-col-10 {
-  width: 83.33333333%;
-}
-.w-col-11 {
-  width: 91.66666667%;
-}
-.w-col-12 {
-  width: 100%;
 }
 .w-hidden-main {
   display: none !important;
@@ -958,6 +694,7 @@ textarea.w-select {
 }
 .w-slider-nav.w-round > div {
   border-radius: 100%;
+  background-color: rgba(41, 98, 255, 0.5);
 }
 .w-slider-nav.w-num > div {
   width: auto;
@@ -976,7 +713,7 @@ textarea.w-select {
   background-color: rgba(34, 34, 34, 0.4);
 }
 .w-slider-nav-invert > div.w-active {
-  background-color: #222;
+  background-color: #2962ff;
 }
 .w-slider-dot {
   position: relative;
@@ -985,7 +722,7 @@ textarea.w-select {
   height: 1em;
   background-color: rgba(255, 255, 255, 0.4);
   cursor: pointer;
-  margin: 0 3px 0.5em;
+  margin: 0 3px 0 3px;
   transition: background-color 0.1s, color 0.1s;
 }
 .w-slider-dot.w-active {
@@ -1009,7 +746,7 @@ textarea.w-select {
   margin: auto;
   cursor: pointer;
   overflow: hidden;
-  color: #fff;
+  color: #2962ff;
   font-size: 40px;
   -webkit-tap-highlight-color: transparent;
   tap-highlight-color: transparent;

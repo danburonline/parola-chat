@@ -19,9 +19,10 @@ export default function ChatMessage(props) {
 
   useEffect(() => {
     scrollToBottom()
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setKickOffMessage(false)
     }, 5000) // Stop the state for the kickOffMessage so that it won't animate the kick-off message every time
+    return () => clearTimeout(timer); // Clear the setTimeout function to eliminate memory leaks
   }, [props.messages]);
 
   // TODO Conditionally display the other message types as well
@@ -30,7 +31,7 @@ export default function ChatMessage(props) {
     {props.messageType == "KICK_OFF" ?
       (<>
         <h3 className={styles.onboardMessageHeader}>–– Neui Nachricht ––</h3>
-        <motion.div transition={{ loop: 3 }} animate={!kickOffMessage ? variants.inactive : variants.active} ref={messagesEndRef} className={styles.message}>
+        <motion.div transition={{ repeat: 3 }} animate={!kickOffMessage ? variants.inactive : variants.active} ref={messagesEndRef} className={styles.message}>
           <ReactMarkdown className={styles.messageText}>{props.messageText}</ReactMarkdown>
         </motion.div>
       </>) :

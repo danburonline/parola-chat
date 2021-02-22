@@ -58,6 +58,12 @@ export default function ChatBody(props) {
       }
 
       if (response.data.length > 3) {
+        let messages = response.data
+
+        if (response.data.length > 30) { // If the chat history is longer than 40 messages, then only load display the last 40 messages
+          const newArray = response.data.slice(response.data.length - 30, response.data.length - 1)
+          messages = newArray
+        }
         const kickOffMessage = {
           _id: Math.random(),
           author: "PAROLA",
@@ -67,7 +73,7 @@ export default function ChatBody(props) {
         }
         props.setFirstTime()
         props.setChatState()
-        setMessages(() => [...response.data, kickOffMessage])
+        setMessages(() => [...messages, kickOffMessage])
         props.removeOnboardingHandler()
         setTimeout(() => {
           setLaunchConfetti({ launch: true })

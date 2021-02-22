@@ -48,8 +48,7 @@
 }
 
 .message:first-child {
-  width: 170px;
-  background-color: #2962ff;
+  max-width: 170px;
 }
 
 .message.active:first-child {

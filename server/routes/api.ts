@@ -30,6 +30,7 @@ router.route('/').post((req, res) => {
           messageType: conv.messageType,
         };
 
+        // TODO Only return a certain amount of messages, not the whole history
         decryptedChat.push(decryptedConv);
       });
 

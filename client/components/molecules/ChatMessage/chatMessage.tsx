@@ -44,7 +44,7 @@ export default function ChatMessage(props) {
           <p className={styles.messageText}>{props.messageText}</p>
         </div>
         <div className={`${styles.message} ${styles.image}`}>
-          <img src={props.mediaSrc[0]} className="image" />
+          <img height="160" src={props.mediaSrc[0]} className="image" />
         </div>
       </>)
         : props.messageType == "VIDEO" ? (<>

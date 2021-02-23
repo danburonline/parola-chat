@@ -68,7 +68,7 @@ export default function ChatBody(props) {
         const kickOffMessage = {
           _id: Math.random(),
           author: "PAROLA",
-          messageText: "🎉🎉🎉🎉🎉 Und da gseht mer sich widr! Was chani hüt für dich mache?",
+          messageText: "🎉🎉🎉🎉🎉 Und da gseht mer sich widr! Und etzt frag mich schnell, dassi dich überrasche sell 😉",
           messageType: "KICK_OFF",
           mediaSrc: ""
         }
@@ -141,7 +141,7 @@ export default function ChatBody(props) {
         setTimeout(() => {
           setMessages(prevState => [...prevState, ...response.data])
           setParolaWriting(false)
-        }, 500)
+        }, 750)
         textInput.current.value = '';
         if (showOnboardingInfo) {
           setOnboardingInfo(false)

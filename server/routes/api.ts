@@ -83,7 +83,6 @@ router.route('/add').post(async (req, res) => {
   const uuid = req.body.uuid;
   const encryptedUuid = encrypt(uuid, uuid);
   const conversations = req.body.conversations;
-  let sliceArray = 1;
   let encryptedConversations: any = [];
 
   let parolaReplies = await detectIntentText(conversations[0].messageText, sessionId);
@@ -101,17 +100,14 @@ router.route('/add').post(async (req, res) => {
     case "detectSlider":
       const newSliderMessage = sliderIntent()
       parolaMessages.push(newSliderMessage)
-      sliceArray += 1; // When an intent is triggered, the API should return two items (array.slice) instead of just one
       break;
     case "detectImage":
       const newImageMessage = imageIntent()
       parolaMessages.push(newImageMessage)
-      sliceArray += 1;
       break;
     case "detectVideo":
       const newVideoMessage = videoIntent()
       parolaMessages.push(newVideoMessage)
-      sliceArray += 1;
       break;
     default:
   }
@@ -160,7 +156,7 @@ router.route('/add').post(async (req, res) => {
         decryptedChat.push(decryptedConv);
       });
 
-      res.send(decryptedChat.slice(decryptedChat.length - sliceArray));
+      res.send(decryptedChat.slice(decryptedChat.length - parolaMessages.length));
     })
     .catch((err: any) => res.status(400).json(`Error: ${err}`));
 });

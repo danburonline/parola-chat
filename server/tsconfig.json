@@ -1,13 +1,12 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "lib": [
-      "es2019"
-    ],
+    "lib": ["esnext"],
     "module": "commonjs",
     "rootDir": "./",
     "outDir": "./build",
     "esModuleInterop": true,
-    "strict": true
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
   }
 }

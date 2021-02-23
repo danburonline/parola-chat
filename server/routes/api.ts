@@ -1,6 +1,7 @@
 import ChatModel from '../models/chat.model';
 import express, { Router } from 'express';
 import { encrypt, decrypt } from '../modules/encryption';
+import { videoIntent, sliderIntent, imageIntent } from "../modules/intents"
 import detectIntentText from "../modules/dialogflow"
 import { v4 as uuidv4 } from 'uuid';
 
@@ -30,7 +31,6 @@ router.route('/').post((req, res) => {
           messageType: conv.messageType,
         };
 
-        // TODO Only return a certain amount of messages, not the whole history
         decryptedChat.push(decryptedConv);
       });
 
@@ -73,23 +73,8 @@ router.route('/new').post((req, res) => {
     date: Date.now(),
   })
     .save()
-    .then((chat: any) => {
-      let decryptedChat: any = [];
-
-      chat.conversations.forEach((conv: any) => {
-        let decryptedConv;
-        let decryptedMessageText: any = decrypt(conv.messageText, uuid);
-
-        decryptedConv = {
-          _id: conv._id,
-          messageText: decryptedMessageText,
-          author: conv.author,
-          mediaSrc: conv.mediaSrc,
-          messageType: conv.messageType,
-        };
-        decryptedChat.push(decryptedConv);
-      });
-      res.send(decryptedChat);
+    .then(() => {
+      res.send([]);
     })
     .catch((err: any) => res.send([]));
 });
@@ -97,33 +82,39 @@ router.route('/new').post((req, res) => {
 router.route('/add').post(async (req, res) => {
   const uuid = req.body.uuid;
   const encryptedUuid = encrypt(uuid, uuid);
-
   const conversations = req.body.conversations;
+  let sliceArray = 1;
   let encryptedConversations: any = [];
 
   let parolaReplies = await detectIntentText(conversations[0].messageText, sessionId);
 
-  let parolaMessages = parolaReplies.map((singleMessage: any) => {
+  let parolaMessages = parolaReplies.dialogFlowResponse.map((singleMessage: any) => {
     return {
       messageText: singleMessage,
       author: 'PAROLA',
       messageType: 'TXT',
-      mediaSrc: '',
-      mediaAlt: '',
+      mediaSrc: ''
     };
   });
 
-  // TODO Fulfillment replies/promises would be communicated here
-  // ! They would push the reply message to the conversations array
-  // Example
-  // let testFulfillmentReply = {
-  //   messageText: "This is a test reply",
-  //   author: 'PAROLA',
-  //   messageType: 'VIDEO',
-  //   mediaSrc: 'https://www.youtube.com/embed/Kn0EA1OXN24',
-  //   mediaAlt: ''
-  // };
-  // conversations.push(testFulfillmentReply);
+  switch (parolaReplies.dialogFlowIntent) {
+    case "detectSlider":
+      const newSliderMessage = sliderIntent()
+      parolaMessages.push(newSliderMessage)
+      sliceArray += 1; // When an intent is triggered, the API should return two items (array.slice) instead of just one
+      break;
+    case "detectImage":
+      const newImageMessage = imageIntent()
+      parolaMessages.push(newImageMessage)
+      sliceArray += 1;
+      break;
+    case "detectVideo":
+      const newVideoMessage = videoIntent()
+      parolaMessages.push(newVideoMessage)
+      sliceArray += 1;
+      break;
+    default:
+  }
 
   parolaMessages.forEach((parolaMessage: any) => {
     conversations.push(parolaMessage);
@@ -168,7 +159,8 @@ router.route('/add').post(async (req, res) => {
 
         decryptedChat.push(decryptedConv);
       });
-      res.send(decryptedChat);
+
+      res.send(decryptedChat.slice(decryptedChat.length - sliceArray));
     })
     .catch((err: any) => res.status(400).json(`Error: ${err}`));
 });

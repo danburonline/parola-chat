@@ -46,27 +46,17 @@ async function detectIntentText(query: any, sessionId: any) {
   let finalFinalDialogFlowResponses = mappedDialogFlowResponses.map(
     (singleMessage: any) => singleMessage.text
   );
-  return finalFinalDialogFlowResponses.flat();
-  // console.log(`User Query: ${query}`);
-  // for (const message of response.queryResult.responseMessages) {
-  //   if (message.text) {
-  //     // console.log(`Agent Response: ${message.text.text}`);
-  //     return message.text.text;
-  //   }
-  // }
-  // if (response.queryResult.match.intent) {
-  //   console.log(
-  //     `Matched Intent: ${response.queryResult.match.intent.displayName}`
-  //   );
-  // }
-  // console.log(`Current Page: ${response.queryResult.currentPage.displayName}`);
+
+  let replyObject = {
+    dialogFlowResponse: finalFinalDialogFlowResponses.flat(),
+    dialogFlowIntent: ""
+  }
+
+  if (response.queryResult.match.intent) {
+    replyObject.dialogFlowIntent = response.queryResult.match.intent.displayName
+  }
+
+  return replyObject;
 }
 
 export default detectIntentText;
-// [END dialogflow_cx_detect_intent_text]
-
-// main(...process.argv.slice(2));
-// process.on('unhandledRejection', err => {
-//   console.error(err.message);
-//   process.exitCode = 1;
-//});

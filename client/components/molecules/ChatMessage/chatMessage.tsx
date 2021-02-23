@@ -35,12 +35,12 @@ export default function ChatMessage(props) {
   return <>
     {props.messageType == "KICK_OFF" ?
       (<>
-        <h3 className={styles.onboardMessageHeader}>— Neui Nachricht —</h3>
-        <motion.div transition={{ repeat: 3 }} animate={!kickOffMessage ? variants.inactive : variants.active} ref={messagesEndRef} className={styles.message}>
+        <h3 ref={messagesEndRef} className={styles.onboardMessageHeader}>— Neui Nachricht —</h3>
+        <motion.div transition={{ repeat: 3 }} animate={!kickOffMessage ? variants.inactive : variants.active} className={styles.message}>
           <ReactMarkdown className={styles.messageText}>{props.messageText}</ReactMarkdown>
         </motion.div>
       </>) : props.messageType == "IMAGE" ? (<>
-        <div className={styles.message}>
+        <div ref={messagesEndRef} className={styles.message}>
           <p className={styles.messageText}>{props.messageText}</p>
         </div>
         <div className={`${styles.message} ${styles.image}`}>
@@ -48,7 +48,7 @@ export default function ChatMessage(props) {
         </div>
       </>)
         : props.messageType == "VIDEO" ? (<>
-          <div className={styles.message}>
+          <div ref={messagesEndRef} className={styles.message}>
             <p className={styles.messageText}>{props.messageText}</p>
           </div>
           <div className={`${styles.message} ${styles.video}`}>
@@ -66,7 +66,7 @@ export default function ChatMessage(props) {
               <div className={styles.message}>
                 <p className={styles.messageText}>{props.messageText}</p>
               </div>
-              <div className={`${styles.chatSlider}`}>
+              <div ref={messagesEndRef} className={`${styles.chatSlider}`}>
                 <div className={`${styles.sliderMask} ${"w-slider-mask"}`}>
                   <Slider {...sliderSettings}>
                     {props.mediaSrc.map((item) => (

@@ -27,7 +27,7 @@ export default function ChatBody(props) {
       _id: 1,
       author: "PAROLA",
       messageText: "Aber ich redde sehr gern drüber 😎🇨🇭",
-      messageType: "txt",
+      messageType: "TXT",
       mediaSrc: ""
     },
     {
@@ -64,6 +64,7 @@ export default function ChatBody(props) {
           const newArray = response.data.slice(response.data.length - 30, response.data.length - 1)
           messages = newArray
         }
+
         const kickOffMessage = {
           _id: Math.random(),
           author: "PAROLA",
@@ -101,8 +102,6 @@ export default function ChatBody(props) {
             uuid: props.visitorId,
             conversations: [...messages, newOnboardingMessage]
           },
-        }).then((response) => {
-          setMessages([...response.data])
         })
       }
     }
@@ -140,12 +139,12 @@ export default function ChatBody(props) {
         },
       }).then((response) => {
         setTimeout(() => {
-          setMessages(prevState => [...prevState, ...response.data.slice(response.data.length - 1)])
+          setMessages(prevState => [...prevState, ...response.data])
           setParolaWriting(false)
         }, 500)
         textInput.current.value = '';
         if (showOnboardingInfo) {
-          setOnboardingInfo(prevState => false)
+          setOnboardingInfo(false)
         }
       })
     }

@@ -13,9 +13,8 @@ router.route('/').post((req, res) => {
   const encryptedUuid = encrypt(uuid, uuid);
 
   ChatModel.findOne({ uuid: encryptedUuid.encryptedData }, (err: any, result: any) => {
-    if (err) {
-      res.send(err);
-    }
+    if (err) { res.send(err) }
+
     let decryptedChat: any = [];
 
     if (result) {
@@ -38,6 +37,7 @@ router.route('/').post((req, res) => {
       return;
     }
 
+    // Just return nothing if there aren't any conversations on the database
     res.send([]);
     return;
   });
@@ -76,7 +76,6 @@ router.route('/new').post((req, res) => {
     .then(() => {
       res.send([]);
     })
-    .catch((err: any) => res.send([]));
 });
 
 router.route('/add').post(async (req, res) => {
@@ -97,15 +96,15 @@ router.route('/add').post(async (req, res) => {
   });
 
   switch (parolaReplies.dialogFlowIntent) {
-    case "detectSlider":
+    case "detectSlider": // Variable name is from DialogFlow CX
       const newSliderMessage = sliderIntent()
       parolaMessages.push(newSliderMessage)
       break;
-    case "detectImage":
+    case "detectImage": // Variable name is from DialogFlow CX
       const newImageMessage = imageIntent()
       parolaMessages.push(newImageMessage)
       break;
-    case "detectVideo":
+    case "detectVideo": // Variable name is from DialogFlow CX
       const newVideoMessage = videoIntent()
       parolaMessages.push(newVideoMessage)
       break;
@@ -156,9 +155,11 @@ router.route('/add').post(async (req, res) => {
         decryptedChat.push(decryptedConv);
       });
 
+      // Only send the newly saved messages back to the client
       res.send(decryptedChat.slice(decryptedChat.length - parolaMessages.length));
     })
-    .catch((err: any) => res.status(400).json(`Error: ${err}`));
+    // Don't send any errors back to the client
+    .catch(() => res.send([]));
 });
 
 export default router

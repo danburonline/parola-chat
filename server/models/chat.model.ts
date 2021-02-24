@@ -19,7 +19,7 @@ const messageSchema = new Schema({
     type: String,
     required: true,
   },
-  mediaSrc: [Schema.Types.Mixed]
+  mediaSrc: [Schema.Types.Mixed] // mediaSrc can also hold the information for a gallery, images and videos etc.
 });
 
 const chatSchema = new Schema({

@@ -5,6 +5,7 @@ const projectId = process.env.DF_PROJECTID;
 const agentId = process.env.DF_AGENTID;
 const languageCode = process.env.DF_LANGCODE;
 const location = process.env.DF_LOCATION;
+const apiEndpoint = process.env.API_ENDPOINT
 
 const gcpCredentials = {
   client_email: process.env.GCP_CLIENTEMAIL,
@@ -14,7 +15,7 @@ const gcpCredentials = {
 const client = new SessionsClient({
   projectId: projectId,
   credentials: gcpCredentials,
-  apiEndpoint: "europe-west1-dialogflow.googleapis.com"
+  apiEndpoint: apiEndpoint
 });
 
 async function detectIntentText(query: any, sessionId: any) {
@@ -52,6 +53,7 @@ async function detectIntentText(query: any, sessionId: any) {
     dialogFlowIntent: ""
   }
 
+  // If the user triggered an intent, then pass it to the reply object
   if (response.queryResult.match.intent) {
     replyObject.dialogFlowIntent = response.queryResult.match.intent.displayName
   }

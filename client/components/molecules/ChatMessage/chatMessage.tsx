@@ -4,14 +4,16 @@ import ReactMarkdown from 'react-markdown'
 import { motion } from 'framer-motion'
 import Slider from "react-slick";
 
-export default function ChatMessage(props) {
+export default function ChatMessage(props: any) {
 
-  var sliderSettings = {
+  // Settings object for the react-slick slider
+  const sliderSettings = {
     dots: true,
     arrows: false,
     dotsClass: "customDots" // Class can be found in the globals.scss file
   };
 
+  // Settings object for the Framer Motion library
   const variants = {
     active: { scale: [1, 1.05, 1], opacity: [1, 0.75, 1] },
     inactive: { scale: 1, opacity: 1 }
@@ -27,8 +29,8 @@ export default function ChatMessage(props) {
   useEffect(() => {
     scrollToBottom()
     const timer = setTimeout(() => {
-      setKickOffMessage(false)
-    }, 5000) // Set the state for the kickOffMessage to false so that it won't animate the kick-off message every time again
+      setKickOffMessage(false) // Set the state for the kickOffMessage to false so that it won't animate the kick-off message every time again
+    }, 5000)
     return () => clearTimeout(timer); // Clear the setTimeout function to eliminate memory leaks
   }, [props.messages]);
 
@@ -85,7 +87,13 @@ export default function ChatMessage(props) {
             </>
           ) :
             (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} ref={messagesEndRef} className={props.messageAuthor === "PAROLA" ? `${styles.message}` : `${styles.message} ${styles.user}`}>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                ref={messagesEndRef}
+                className={
+                  props.messageAuthor === "PAROLA" ? `${styles.message}` : `${styles.message} ${styles.user}`
+                }>
                 <ReactMarkdown className={styles.messageText}>{props.messageText}</ReactMarkdown>
               </motion.div>
             )

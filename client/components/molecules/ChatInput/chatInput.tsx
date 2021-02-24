@@ -3,14 +3,14 @@ import Typewriter from 'typewriter-effect';
 import styles from "./chatInput.module.scss"
 import { motion } from 'framer-motion'
 
-export default function ChatInput(props) {
+export default function ChatInput(props : any) {
   const textInput = useRef(null);
 
   useEffect(() => {
     setInputText(props.placeholderText)
   }, [props.placeholderText])
 
-  const handleEnter = event => {
+  const handleEnter = (event : any) => {
     event.preventDefault()
     event.stopPropagation()
     props.handleUserInput(textInput)
@@ -46,7 +46,7 @@ export default function ChatInput(props) {
             <motion.div whileHover={{ scale: 1.05 }} onClick={props.setChatState} className={styles.input}>
               <span className={styles.inputText}>
                 <Typewriter
-                  onInit={() => { /* Needed an onInit function, otherwise it throws an error */ }}
+                  onInit={() => { /* Typewriter needs an onInit function, otherwise it throws an error */ }}
                   options={{
                     strings: ['Probier mich us', 'Schriib mit mir', 'Stell mir eh Frag', 'Lueg was ich cha'],
                     autoStart: true,

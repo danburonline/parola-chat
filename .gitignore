@@ -1,7 +1,3 @@
-
-# Created by https://www.toptal.com/developers/gitignore/api/macos,webstorm,visualstudiocode,node,react
-# Edit at https://www.toptal.com/developers/gitignore?templates=macos,webstorm,visualstudiocode,node,react
-
 ### macOS ###
 # General
 .DS_Store
@@ -273,5 +269,3 @@ fabric.properties
 # CodeStream plugin
 # https://plugins.jetbrains.com/plugin/12206-codestream
 .idea/codestream.xml
-
-# End of https://www.toptal.com/developers/gitignore/api/macos,webstorm,visualstudiocode,node,react

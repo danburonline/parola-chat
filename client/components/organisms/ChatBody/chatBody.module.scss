@@ -24,7 +24,7 @@
 }
 
 .chatMain.active:after {
-  content: '–'; // Margin-bottom doesn't work on Firefox, this is a solution for it
+  content: '–'; // Margin-bottom doesn't work on Firefox, this is a solution to fix it
   display: block;
   width: 100%;
   opacity: 0;

@@ -11,17 +11,19 @@ import QuickReplies from "../QuickReplies/quickReplies"
 import OnboardingInfo from "../OnboardingInfo/onboardingInfo"
 import { Konfettikanone } from "react-konfettikanone";
 
-const variants = {
-  active: {
-    height: 470
-  },
-  inactive: {
-    height: "auto"
+export default function ChatBody(props : any) {
+
+  // Settings object for the Framer Motion library
+  const variants = {
+    active: {
+      height: 470
+    },
+    inactive: {
+      height: "auto"
+    }
   }
-}
 
-export default function ChatBody(props) {
-
+  // Define the first two messages which will be displayed when the user didn't interact with the ad
   const [messages, setMessages] = useState([
     {
       _id: 1,
@@ -40,8 +42,9 @@ export default function ChatBody(props) {
   ])
 
   const [parolaIsWriting, setParolaWriting] = useState(false)
-
   const [placeholderText, setPlaceholderText] = useState("")
+  const [showOnboardingInfo, setOnboardingInfo] = useState(false)
+  const [launchConfetti, setLaunchConfetti] = useState({ launch: false })
 
   useEffect(() => {
     axios({
@@ -52,6 +55,10 @@ export default function ChatBody(props) {
       },
     }).then((response) => {
       if (response.data.length === 3) {
+        // If the API returns exactly three messages, it means that the user
+        // clicked on the button but didn't write anything, therefore
+        // the ad shows already the active state but still the
+        // onboarding infos and quick replies
         props.setFirstTime()
         props.setChatState()
         setMessages([...response.data])
@@ -60,11 +67,12 @@ export default function ChatBody(props) {
       if (response.data.length > 3) {
         let messages = response.data
 
-        if (response.data.length > 30) { // If the chat history is longer than 40 messages, then only load display the last 40 messages
+        if (response.data.length > 30) { // If the chat history is longer than 30 messages, then only display the last 30 messages
           const newArray = response.data.slice(response.data.length - 30, response.data.length - 1)
           messages = newArray
         }
 
+        // When the user re-visits the ad, this onboarding message will always be displayed
         const kickOffMessage = {
           _id: Math.random(),
           author: "PAROLA",
@@ -72,13 +80,14 @@ export default function ChatBody(props) {
           messageType: "KICK_OFF",
           mediaSrc: ""
         }
+
         props.setFirstTime()
         props.setChatState()
         setMessages(() => [...messages, kickOffMessage])
         props.removeOnboardingHandler()
         setTimeout(() => {
           setLaunchConfetti({ launch: true })
-        }, 500)
+        }, 500) // Added a small delay so that not all animations run at the same time (performance reasons)
       }
     })
   }, [])
@@ -86,6 +95,8 @@ export default function ChatBody(props) {
   useEffect(() => {
     if (props.firstTime) {
       if (props.isActive) {
+
+        // This is the message which will be added if the user clicks on the intro button (first interaction with the ad)
         let newOnboardingMessage = {
           _id: 3,
           author: "PAROLA",
@@ -107,8 +118,6 @@ export default function ChatBody(props) {
     }
   }, [props.isActive])
 
-  const [showOnboardingInfo, setOnboardingInfo] = useState(false)
-
   const onboardingInfoHandler = (text) => {
     setPlaceholderText(text)
     setOnboardingInfo(prevState => !prevState)
@@ -121,7 +130,7 @@ export default function ChatBody(props) {
       props.removeOnboardingHandler()
       setParolaWriting(true)
       const newMessage = {
-        _id: Math.random(),
+        _id: Math.random(), // Setting a random ID for now => will be replaced on the database
         author: "USER",
         messageText: textInput.current.value,
         messageType: "TXT",
@@ -150,11 +159,14 @@ export default function ChatBody(props) {
     }
   };
 
-  const [launchConfetti, setLaunchConfetti] = useState({
-    launch: false
-  })
-
-  const chatMessages = messages.map(message => <ChatMessage key={message._id} messageText={message.messageText} messageAuthor={message.author} messageType={message.messageType} mediaSrc={message.mediaSrc} />)
+  const chatMessages = messages.map(message =>
+    <ChatMessage
+      key={message._id}
+      messageText={message.messageText}
+      messageAuthor={message.author}
+      messageType={message.messageType}
+      mediaSrc={message.mediaSrc} />
+  )
 
   return <>
     <motion.div
@@ -165,7 +177,8 @@ export default function ChatBody(props) {
       {parolaIsWriting ? <Loader /> : null}
     </motion.div>
     {props.isActive ? <Fade /> : null}
-    {props.onboarding && props.isActive ? <QuickReplies removeOnboardingHandler={props.removeOnboardingHandler} handleOnboardingInfo={onboardingInfoHandler} /> : null}
+    {props.onboarding && props.isActive ?
+      <QuickReplies removeOnboardingHandler={props.removeOnboardingHandler} handleOnboardingInfo={onboardingInfoHandler} /> : null}
     <AnimatePresence>
       {showOnboardingInfo ?
         <motion.div

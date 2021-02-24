@@ -39,7 +39,7 @@ export function imageIntent(): any {
     messageText: "Da es Bispill-Bild:",
     author: "PAROLA",
     messageType: "IMAGE",
-    mediaSrc: "https://picsum.photos/500/350"
+    mediaSrc: "https://picsum.photos/500/450"
   }
 
   return message

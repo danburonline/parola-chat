@@ -18,19 +18,20 @@ export async function getStaticProps() {
   }
 }
 
-export default function Home(props) {
+export default function Home(props: any) {
   const [visitorId, setVisitorId] = useState("")
 
   useEffect(() => {
     const fetchVisitorId = async () => {
-      const fp = await FingerprintJS.load({
+      const fingerPrint = await FingerprintJS.load({
         token: props.FS_TOKEN,
         region: props.REGION,
       });
-      const result = await fp.get();
+      const result = await fingerPrint.get();
       const resultVisitorId = result.visitorId;
       setVisitorId(resultVisitorId)
-      // ! Uncomment for development purposes (to use the API in an API software)
+
+      // ? Uncomment for development purposes (to use the API in an API software)
       // console.log(visitorId)
     }
 
@@ -51,13 +52,16 @@ export default function Home(props) {
     </Head>
 
     <main className={styles.main}>
-      {visitorId ? <Chat visitorId={visitorId} apiUrl={props.API_URL} /> : <div className={styles.spinnerWrapper}><Spinner
-        type="ThreeDots"
-        color="white"
-        height={75}
-        width={75}
-        timeout={3000} />
-      </div>}
+      {visitorId ?
+        <Chat visitorId={visitorId} apiUrl={props.API_URL} /> :
+        <div className={styles.spinnerWrapper}>
+          <Spinner
+            type="ThreeDots"
+            color="white"
+            height={75}
+            width={75}
+            timeout={5000} />
+        </div>}
       <HeroInfo />
     </main>
   </>

@@ -13,7 +13,8 @@
   "scripts": {
     "dev": "nodemon index.ts",
     "build": "tsc index.ts --esModuleInterop",
-    "start": "node ./index.js"
+    "start": "node ./index.js",
+    "deploy": "yarn build && gcloud app deploy server.yaml"
   },
   "devDependencies": {
     "@types/cors": "^2.8.10",

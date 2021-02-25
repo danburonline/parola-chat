@@ -7,7 +7,7 @@ export default function Button() {
       whileTap={{ scale: 0.95 }}
       whileHover={{ scale: 1.05 }}
       rel="noopener"
-      href="https://github.com/danburonline/parola-chat"
+      href="https://github.com"
       target="_blank"
       className={styles.link}
     >

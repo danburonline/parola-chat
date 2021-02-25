@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p 8080",
-    "gcp-build": "yarn build"
+    "gcp-build": "yarn build",
+    "deploy": "yarn build && gcloud app deploy client.yaml"
   },
   "dependencies": {
     "@fingerprintjs/fingerprintjs-pro": "^3.2.5",

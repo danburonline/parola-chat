@@ -118,7 +118,7 @@ I highly recommend using a desktop API client for testing the Parola API on your
   "uuid": "NRnjqZOAuESWXcljRwAx",
   "conversations": [
     {
-      "messageText": "This is new message from the user",
+      "messageText": "This is a new message from the user",
       "author": "USER",
       "messageType": "TXT"
     }

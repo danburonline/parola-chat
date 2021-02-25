@@ -6,6 +6,6 @@
 - Create a `settings.json` file to easily change the colours, images and settings (like initial messages or the kick-off message) without the need to edit the code.
 - Embed an audio-detection functionality since DialogFlow CX can also handle audio/speech input.
 - Create an automation script to easily create a new chatbot ad from scratch (like setting up a new agent, connecting it to the app engine etc.).
-- Create a version of Parola that can run on the publisher's website (as the last touchpoint). This version of Parola wouldn't run inside an ad frame; instead, it would function as a conventional chatbot ad (right corner bubble etc.).
+- Create a version of Parola that can run on the advertiser's website (as the last touchpoint). This version of Parola wouldn't run inside an ad frame; instead, it would function as a conventional chatbot (right corner bubble etc.).
 - Build a spam and bot protection for the ad, so that spammers can't DDoS the Parola services.
-- Create an Emoji keyboard shortcuts with the`:` notation (like Discord, WhatsApp etc.).
+- Create an Emoji keyboard shortcut with the `:` notation (like Discord, WhatsApp etc.).

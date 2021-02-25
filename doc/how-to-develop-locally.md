@@ -3,7 +3,7 @@
 ## Server service
 
 - `cd /server`
-- Create a `.env` file and fill in these environment variables (for more information, read the [How to create and deploy a new chatbot ad](how-to-new-ad.md) documentation):
+- Create a `.env` file and fill in these environment variables (for more information, read the [How to create and deploy a new chatbot ad](https://github.com/danburonline/parola-chat/blob/master/doc/how-to-new-ad.md.md) documentation):
 
 ```txt
 DB_URI=
@@ -24,7 +24,7 @@ GCP_CLIENTKEY=
 ## Client service
 
 - `cd /client`
-- Create a `.env.local` file and fill in these environment variables (for more information, read the [How to create and deploy a new chatbot ad](how-to-new-ad.md) documentation):
+- Create a `.env.local` file and fill in these environment variables (for more information, read the [How to create and deploy a new chatbot ad](https://github.com/danburonline/parola-chat/blob/master/doc/how-to-new-ad.md.md) documentation):
 
 ```txt
 FS_TOKEN=

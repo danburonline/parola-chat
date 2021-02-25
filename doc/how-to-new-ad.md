@@ -1,4 +1,4 @@
-# How to create a new chatbot ad
+# How to create and deploy a new chatbot ad
 
 Creating a new chatbot ad instance consists of five major steps:
 

@@ -8,4 +8,4 @@
 - Create an automation script to easily create a new chatbot ad from scratch (like setting up a new agent, connecting it to the app engine etc.).
 - Create a version of Parola that can run on the publisher's website (as the last touchpoint). This version of Parola wouldn't run inside an ad frame; instead, it would function as a conventional chatbot ad (right corner bubble etc.).
 - Build a spam and bot protection for the ad, so that spammers can't DDoS the Parola services.
-- Create Emoji keyboard shortcuts with the`:` notation (like Discord, WhatsApp etc.).
+- Create an Emoji keyboard shortcuts with the`:` notation (like Discord, WhatsApp etc.).

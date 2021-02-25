@@ -1,10 +1,9 @@
 .chatMenu {
   position: absolute;
-  left: 0%;
+  left: 0;
   top: 60px;
-  right: 0%;
+  right: 0;
   bottom: auto;
-  z-index: 1;
   width: 100%;
   height: 450px;
   padding-top: 30px;
@@ -21,8 +20,8 @@
 }
 
 .menuText {
-  margin-top: 0px;
-  margin-bottom: 0px;
+  margin-top: 0;
+  margin-bottom: 0;
   padding-top: 10px;
   padding-bottom: 10px;
   transition: opacity 200ms ease;
@@ -41,10 +40,10 @@
 
 .copyrightContainer {
   position: absolute;
-  left: 0%;
+  left: 0;
   top: auto;
-  right: 0%;
-  bottom: 0%;
+  right: 0;
+  bottom: 0;
   display: flex;
   width: 100%;
   height: auto;

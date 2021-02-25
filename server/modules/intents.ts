@@ -1,5 +1,5 @@
 export function sliderIntent(): any {
-  const message = {
+  return {
     messageText: "Da hesch eh Produkte-Slider:",
     author: "PAROLA",
     messageType: "SLIDER",
@@ -30,28 +30,22 @@ export function sliderIntent(): any {
       }
     ]
   }
-
-  return message
 }
 
 export function imageIntent(): any {
-  const message = {
+  return {
     messageText: "Da es Bispill-Bild:",
     author: "PAROLA",
     messageType: "IMAGE",
     mediaSrc: "https://picsum.photos/500/450"
   }
-
-  return message
 }
 
 export function videoIntent(): any {
-  const message = {
+  return {
     messageText: "Da es Bispill-Video:",
     author: "PAROLA",
     messageType: "VIDEO",
     mediaSrc: "https://www.youtube.com/embed/aqz-KE-bpKQ"
   }
-
-  return message
 }

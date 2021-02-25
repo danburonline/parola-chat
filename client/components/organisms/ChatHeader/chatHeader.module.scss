@@ -37,8 +37,8 @@
 }
 
 .chatHeading {
-  margin-top: 0px;
-  margin-bottom: 0px;
+  margin-top: 0;
+  margin-bottom: 0;
   margin-left: 10px;
   font-family: Roboto, sans-serif;
   color: #fff;
@@ -51,8 +51,8 @@
 .menuCloseButton {
   position: relative;
   left: auto;
-  top: 0%;
-  right: 0%;
+  top: 0;
+  right: 0;
   bottom: auto;
   width: 25px;
   margin-left: auto;
@@ -81,6 +81,6 @@
 
 @media screen and (max-width: 479px) {
   .chatHeader {
-    border-radius: 0px;
+    border-radius: 0;
   }
 }

@@ -79,7 +79,6 @@
 
 .message.video {
   width: 90%;
-  padding-bottom: 15px;
   padding: 15px;
 }
 
@@ -89,7 +88,7 @@
 }
 
 .linkIcon.slider {
-  margin-right: 0px;
+  margin-right: 0;
   float: right;
   opacity: 0.5;
 }
@@ -137,7 +136,7 @@
 }
 
 .sliderText {
-  margin-bottom: 0px;
+  margin-bottom: 0;
   font-family: Roboto, sans-serif;
   color: #fff;
   line-height: 17px;
@@ -150,9 +149,8 @@
 
 .icon {
   position: absolute;
-  left: 0px;
+  left: 0;
   display: none;
-  background-color: red;
 }
 
 .sliderLink {

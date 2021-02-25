@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from "react"
+import {useEffect, useState} from "react"
 import styles from "./chatBody.module.scss"
 import axios from 'axios';
-import { AnimatePresence, motion } from 'framer-motion'
+import {AnimatePresence, motion} from 'framer-motion'
 
 import ChatInput from "../../molecules/ChatInput/chatInput"
 import ChatMessage from "../../molecules/ChatMessage/chatMessage"
@@ -9,7 +9,7 @@ import Loader from "../../atoms/Loader/loader"
 import Fade from "../../atoms/Fade/fade"
 import QuickReplies from "../QuickReplies/quickReplies"
 import OnboardingInfo from "../OnboardingInfo/onboardingInfo"
-import { Konfettikanone } from "react-konfettikanone";
+import {Konfettikanone} from "react-konfettikanone";
 
 export default function ChatBody(props : any) {
 
@@ -68,8 +68,7 @@ export default function ChatBody(props : any) {
         let messages = response.data
 
         if (response.data.length > 30) { // If the chat history is longer than 30 messages, then only display the last 30 messages
-          const newArray = response.data.slice(response.data.length - 30, response.data.length - 1)
-          messages = newArray
+          messages = response.data.slice(response.data.length - 30, response.data.length - 1)
         }
 
         // When the user re-visits the ad, this onboarding message will always be displayed

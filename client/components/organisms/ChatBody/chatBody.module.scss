@@ -19,7 +19,6 @@
   overflow-x: hidden;
   overflow-y: scroll;
   height: 470px;
-  background-color: transparent;
   background-color: #fff;
 }
 
@@ -36,6 +35,6 @@
 
 @media screen and (max-width: 479px) {
   .chatMain {
-    border-radius: 0px;
+    border-radius: 0;
   }
 }

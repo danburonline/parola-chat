@@ -22,7 +22,6 @@ Creating a new chatbot ad instance consists of five major steps:
 
 - Go to https://console.cloud.google.com and login/create a new account
 - _Optionally:_ Select an organization and create a new project
-- Set up a billing account for the new project
 - _Optionally:_ Create a budget and budget alerts
 - Search for "DialogFlow API" in the search bar and connect the service to the project
 - Go to "Login Details" and create a new service account login with admin access to the DialogFlow API
@@ -45,7 +44,11 @@ Creating a new chatbot ad instance consists of five major steps:
 
 ## 5. Deploy the application
 
-- Edit the `.env*` and `*.yaml` files in the server and client directory with the information from DialogFlow CX (id and co.), the data from the downloaded JSON private key from GCP (private email and co.), and the connection string from MongoDB Atlas (don't forget to add the plain text password to the string)
+- Edit both `.env` files in the server and client folders with the information from DialogFlow CX (id and co.), the data from the downloaded JSON private key from GCP (private email and co.), and the connection string from MongoDB Atlas (don't forget to add the plain text password to the MongoDB connection string)
+- Run the command `gcloud init` and follow the instructions from the CLI tool (don't forget to select the correct App Engine project)
 - CD into the server folder and run the command `yarn deploy`
+- Run the command `gcloud app browse` to  open the back-end in the browser
+- Copy the URL from the deployed back-end from the browser
+- Paste the URL to the `.env.local` file inside the client folder where it says `API_URL` (don't forget to add the `/api` at the end of the URL)
 - CD into the client folder and run the command `yarn deploy`
-- Run the command `gcloud app browse -s client` to see the live version of your new chatbot ad
+- Run the command `gcloud app browse` to see the live version of your new chatbot ad

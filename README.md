@@ -31,7 +31,6 @@ Before you can create a Parola chatbot ad on your own, be sure to have these pre
 - NodeJS `node ≥12`
 - Google Cloud Platform SDK `gcloud ≥328.0.0`
 - TypeScript compiler `tsc ≥3.9.7`
-- Next.js `next ≥10.0.7`
 - Git `git ≥2.22.0`
 - Yarn `yarn ≥1.22.10`
 

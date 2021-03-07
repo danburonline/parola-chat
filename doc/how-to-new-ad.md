@@ -51,4 +51,4 @@ Creating a new chatbot ad instance consists of five major steps:
 - Copy the URL from the deployed back-end from the browser
 - Paste the URL to the `.env.local` file inside the client folder where it says `API_URL` (don't forget to add the `/api` at the end of the URL)
 - CD into the client folder and run the command `yarn deploy`
-- Run the command `gcloud app browse` to see the live version of your new chatbot ad
+- Run the command `gcloud app browse -s client` to see the live version of your new chatbot ad

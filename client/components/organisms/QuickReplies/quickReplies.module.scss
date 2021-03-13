@@ -1,14 +1,14 @@
 .quickRepliesContainer {
-  position: absolute;
+  position: relative;
   left: 0;
   top: auto;
   right: 0;
-  bottom: 70px;
   display: flex;
-  width: 100%;
-  padding: 20px;
+  width: 300px;
+  padding-top: 20px;
   flex-direction: row;
   justify-content: flex-end;
   flex-wrap: wrap;
   align-items: baseline;
+  transform: translateX(-60px); // Center it via transform since the container needs to be position relative
 }

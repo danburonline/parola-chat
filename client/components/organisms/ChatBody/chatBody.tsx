@@ -83,7 +83,6 @@ export default function ChatBody(props : any) {
         props.setFirstTime()
         props.setChatState()
         setMessages(() => [...messages, kickOffMessage])
-        props.removeOnboardingHandler()
         setTimeout(() => {
           setLaunchConfetti({ launch: true })
         }, 500) // Added a small delay so that not all animations run at the same time (performance reasons)
@@ -118,8 +117,10 @@ export default function ChatBody(props : any) {
   }, [props.isActive])
 
   const onboardingInfoHandler = (text) => {
+    if(props.firstTime) {
+      setOnboardingInfo(prevState => !prevState)
+    }
     setPlaceholderText(text)
-    setOnboardingInfo(prevState => !prevState)
   }
 
   const handleUserInput = (textInput) => {
@@ -174,10 +175,10 @@ export default function ChatBody(props : any) {
       className={props.isActive ? `${styles.chatMain} ${styles.active}` : `${styles.chatMain}`}>
       {chatMessages}
       {parolaIsWriting ? <Loader /> : null}
+      {props.onboarding && props.isActive ?
+      <QuickReplies removeOnboardingHandler={props.removeOnboardingHandler} handleOnboardingInfo={onboardingInfoHandler} /> : null}
     </motion.div>
     {props.isActive ? <Fade /> : null}
-    {props.onboarding && props.isActive ?
-      <QuickReplies removeOnboardingHandler={props.removeOnboardingHandler} handleOnboardingInfo={onboardingInfoHandler} /> : null}
     <AnimatePresence>
       {showOnboardingInfo ?
         <motion.div
